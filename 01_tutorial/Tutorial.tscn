@@ -742,6 +742,7 @@ metadata/_edit_lock_ = true
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_gclwq")]
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

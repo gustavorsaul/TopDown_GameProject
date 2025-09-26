@@ -184,4 +184,5 @@ texture_filter = 1
 position = Vector2(13, 25)
 scale = Vector2(1.7, 1.64583)
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"down"
+animation = &"up"
+speed_scale = 2.0
