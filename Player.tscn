@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1bei8kfqpste"]
+[gd_scene load_steps=27 format=3 uid="uid://c1bei8kfqpste"]
 
 [ext_resource type="Script" uid="uid://d3ycwowkp4cub" path="res://Player.gd" id="1_kne1u"]
 [ext_resource type="Texture2D" uid="uid://dg7id5slhreqo" path="res://Sprites/Player/Character_Idle.png" id="1_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://15nvswiftxop" path="res://Arrow.tscn" id="2_e80uo"]
 [ext_resource type="Texture2D" uid="uid://cb0ouwma0wg5f" path="res://Sprites/Player/Character_Walk.png" id="2_kne1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
@@ -172,6 +173,7 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_kne1u")
+arrow = ExtResource("2_e80uo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12, 26)
