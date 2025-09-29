@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 		position += velocity * speed * delta
 	else:
 		queue_free()
+		
 	
 func animation_finished():
 	print("Acabou a animação")

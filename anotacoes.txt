@@ -1,0 +1,14 @@
+na tela de tutorial:
+	nasce e precisa abater primeiro inimigo que corre até ele com soco
+	ao eliminar enimigo, pega a espada dele
+	
+	próximo inimigo aparece com arco, parado, atirando de longo alcance
+	jogador deve desviar dos tiros de arco e abater o arqueiro
+	
+		quando abater o arqueiro, vai dropar um arco
+		aí precisa matar mais um arqueiro / um inimigo com espada
+		
+		jogador fica mais rápido com soco e só pode dar dash com o soco
+		utilizando a espada e o arco, voce da mais dano que o soco, mas não pode das dash
+		
+		
