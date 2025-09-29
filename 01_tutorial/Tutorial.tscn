@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dp2lpufyjlyyl"]
+[gd_scene load_steps=14 format=4 uid="uid://dp2lpufyjlyyl"]
 
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_gclwq"]
 [ext_resource type="Texture2D" uid="uid://dydcv4nc0tqtp" path="res://Sprites/Environment/Tiled_files/decorative_cracks_walls.png" id="2_y2r7i"]
 [ext_resource type="Texture2D" uid="uid://bioh2okntlm10" path="res://Sprites/Environment/Tiled_files/decorative_cracks_floor.png" id="3_i7ow6"]
 [ext_resource type="Texture2D" uid="uid://cx7r52k7pya5d" path="res://Sprites/Environment/Tiled_files/decorative_cracks_coasts_animation.png" id="4_vby32"]
+[ext_resource type="PackedScene" uid="uid://283kx4xgk20v" path="res://Enemy.tscn" id="5_vby32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xivnj"]
 texture = ExtResource("2_y2r7i")
@@ -736,6 +737,44 @@ texture = ExtResource("4_vby32")
 sources/0 = SubResource("TileSetAtlasSource_hpwjc")
 sources/1 = SubResource("TileSetAtlasSource_r2yp7")
 
+[sub_resource type="Animation" id="Animation_vby32"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.00245, 3.00116, 4.0049),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-167, -183), Vector2(-81, -185), Vector2(-14, -184), Vector2(83, -185), Vector2(168, -183)]
+}
+
+[sub_resource type="Animation" id="Animation_hpwjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-93, -183)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r2yp7"]
+_data = {
+&"RESET": SubResource("Animation_hpwjc"),
+&"new_animation": SubResource("Animation_vby32")
+}
+
 [node name="Tutorial" type="Node2D"]
 metadata/_edit_lock_ = true
 
@@ -761,3 +800,13 @@ position = Vector2(-555, -552)
 tile_set = SubResource("TileSet_txqus")
 collision_enabled = false
 navigation_visibility_mode = 1
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("5_vby32")]
+position = Vector2(-93, -183)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D2"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_r2yp7")
+}
+speed_scale = 1.3

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cb0ouwma0wg5f" path="res://Sprites/Player/Character_Walk.png" id="2_kne1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(24, 52)
+size = Vector2(26, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv870"]
 atlas = ExtResource("1_kpjcp")
@@ -176,12 +176,11 @@ script = ExtResource("1_kne1u")
 arrow = ExtResource("2_e80uo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(12, 26)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(13, 25)
+position = Vector2(-7.10543e-15, 1.81899e-12)
 scale = Vector2(1.7, 1.64583)
 sprite_frames = SubResource("SpriteFrames_0rwas")
 animation = &"up"

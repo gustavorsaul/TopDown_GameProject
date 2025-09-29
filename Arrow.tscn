@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://15nvswiftxop"]
+[gd_scene load_steps=6 format=3 uid="uid://15nvswiftxop"]
 
 [ext_resource type="Texture2D" uid="uid://0cqxmejyavv5" path="res://Sprites/Bow/Bow and Arrows.png" id="1_265pn"]
 [ext_resource type="Script" uid="uid://daasdajd5yda3" path="res://Arrow.gd" id="1_a8t2u"]
@@ -18,6 +18,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8t2u"]
+size = Vector2(16, 7)
+
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_a8t2u")
 
@@ -25,3 +28,7 @@ script = ExtResource("1_a8t2u")
 texture_filter = 1
 position = Vector2(4, 8)
 sprite_frames = SubResource("SpriteFrames_08ca5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 7.5)
+shape = SubResource("RectangleShape2D_a8t2u")
