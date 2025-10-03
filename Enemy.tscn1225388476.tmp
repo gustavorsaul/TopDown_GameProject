@@ -1,11 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://283kx4xgk20v"]
+[gd_scene load_steps=32 format=3 uid="uid://283kx4xgk20v"]
 
 [ext_resource type="Texture2D" uid="uid://dvk4fbb5gehvq" path="res://Sprites/Enemy/run/run_left_40x40.png" id="1_2hac7"]
 [ext_resource type="Texture2D" uid="uid://cwcy0g0beexsv" path="res://Sprites/Enemy/run/run_down_40x40.png" id="1_e6d4v"]
 [ext_resource type="Script" uid="uid://cxufvavgvok64" path="res://Enemy.gd" id="1_qp131"]
 [ext_resource type="Texture2D" uid="uid://dhoek2ce87o4i" path="res://Sprites/Enemy/run/run_right_40x40.png" id="2_e6d4v"]
 [ext_resource type="Texture2D" uid="uid://dplmn767dmrij" path="res://Sprites/Enemy/run/run_up_40x40.png" id="3_qp131"]
-[ext_resource type="PackedScene" uid="uid://c637t47kbdk31" path="res://HealthBar.tscn" id="6_6do27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6d4v"]
 size = Vector2(22.5, 38)
@@ -214,20 +213,18 @@ scale = Vector2(1.675, 1.675)
 sprite_frames = SubResource("SpriteFrames_dn8ps")
 animation = &"down"
 
-[node name="LifeBar" type="ProgressBar" parent="."]
-modulate = Color(1, 0, 0, 1)
-texture_filter = 1
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -30.0
-max_value = 3.0
-value = 3.0
-show_percentage = false
-
-[node name="HealthBar" parent="." instance=ExtResource("6_6do27")]
+[node name="Life" type="Label" parent="."]
 visible = false
-offset_left = -29.0
-offset_top = -50.0
-offset_right = 31.0
+texture_filter = 1
+offset_left = -19.0
+offset_top = -37.0
+offset_right = 20.0
 offset_bottom = -20.0
+theme_override_font_sizes/font_size = 12
+text = "Vida: 3"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -29.0
+offset_top = -52.0
+offset_right = 30.0
+offset_bottom = -25.0

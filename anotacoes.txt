@@ -12,3 +12,15 @@ na tela de tutorial:
 		utilizando a espada e o arco, voce da mais dano que o soco, mas não pode das dash
 		
 		
+próximos passos:
+	
+	arrumar entorno do personagem
+	testar troca de armas
+	testar abater primeiro inimigo com soco
+	dash para sair da porta da cela que tem armadilha
+	
+	testar arqueiro
+	
+	corrigir flecha terminando no mouse
+	
+	tentar implementar alguma coisa da hud
