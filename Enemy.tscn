@@ -213,11 +213,12 @@ scale = Vector2(1.675, 1.675)
 sprite_frames = SubResource("SpriteFrames_dn8ps")
 animation = &"down"
 
-[node name="Life" type="Label" parent="."]
+[node name="LifeBar" type="ProgressBar" parent="."]
 texture_filter = 1
-offset_left = -19.0
-offset_top = -37.0
+offset_left = -20.0
+offset_top = -40.0
 offset_right = 20.0
-offset_bottom = -20.0
-theme_override_font_sizes/font_size = 12
-text = "Vida: 3"
+offset_bottom = -30.0
+max_value = 3.0
+value = 3.0
+show_percentage = false

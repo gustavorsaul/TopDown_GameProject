@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 @onready var tiros = 0
 
+
 @export var dash_distance = 100.0
 @export var dash_speed = 1000.0
 var is_dashing = false
@@ -79,4 +80,5 @@ func _physics_process(delta):
 		b.position = position
 		b.target = get_global_mouse_position()
 		owner.add_child(b)
+
 			

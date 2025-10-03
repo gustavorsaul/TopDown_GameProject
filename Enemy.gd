@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var life_label = $Life
+@onready var life_bar = $LifeBar
 
 var previous_position: Vector2
 var life: int = 3
@@ -13,7 +13,6 @@ func  _ready() -> void:
 	_update_life_label()
 
 func _physics_process(delta: float) -> void:
-	life_label.text = "Vida: " + str(life) 
 	# Only use velocity-based animation when actually moving via physics
 	if velocity.length() > 0.01:
 		animate()
@@ -60,5 +59,5 @@ func die() -> void:
 	queue_free()
 
 func _update_life_label() -> void:
-	if is_instance_valid(life_label):
-		life_label.text = str(life)
+	if is_instance_valid(life_bar):
+		life_bar.value = life
