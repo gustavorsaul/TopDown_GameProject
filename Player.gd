@@ -96,7 +96,7 @@ func _physics_process(delta):
 		print("Tiro ", tiros)
 		var b := arrow.instantiate()
 		b.position = position
-		b.target = get_global_mouse_position()
+		b.setup_arrow(get_global_mouse_position())
 		owner.add_child(b)
 
 func take_damage(amount: int) -> void:

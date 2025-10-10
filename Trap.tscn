@@ -40,7 +40,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr60m"]
-size = Vector2(101.875, 98.5)
+size = Vector2(101.875, 84)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sv138")
@@ -51,7 +51,7 @@ position = Vector2(25, 32)
 scale = Vector2(3.556, 3)
 sprite_frames = SubResource("SpriteFrames_j3qia")
 animation = &"one"
-frame_progress = 0.314751
+frame_progress = 0.349862
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -80,5 +80,5 @@ frame_progress = 0.818256
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(51.0625, 51.75)
+position = Vector2(51.0625, 59)
 shape = SubResource("RectangleShape2D_hr60m")
