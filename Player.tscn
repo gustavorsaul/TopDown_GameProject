@@ -185,3 +185,14 @@ scale = Vector2(1.7, 1.64583)
 sprite_frames = SubResource("SpriteFrames_0rwas")
 animation = &"right"
 speed_scale = 2.0
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+modulate = Color(0.0500001, 1, 0, 1)
+texture_filter = 1
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -30.0
+max_value = 3.0
+value = 3.0
+show_percentage = false

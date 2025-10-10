@@ -3,17 +3,32 @@ extends CharacterBody2D
 @export var speed = 300.0
 
 @onready var sprite = $AnimatedSprite2D
+@onready var life_bar = $LifeBar
+
 
 @export var arrow : PackedScene
 
 @onready var tiros = 0
 
+var life: int = 3
 
 @export var dash_distance = 100.0
 @export var dash_speed = 1000.0
 var is_dashing = false
 var dash_direction = Vector2.ZERO
 var dash_start_position = Vector2.ZERO
+
+# Sistema de invencibilidade para evitar dano múltiplo
+var is_invincible = false
+@export var invincibility_duration = 1  # duração da invencibilidade em segundos
+
+# Sistema de trail simples para dash
+var dash_trails = []
+@export var trail_count = 3  # número de rastros
+
+func _ready():
+	# Adiciona o player ao grupo "player" para detecção pelas traps
+	add_to_group("player")
 
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -52,6 +67,9 @@ func update_dash(delta):
 		# Usar velocity para respeitar colisões
 		velocity = dash_direction * dash_speed
 		
+		# Criar rastro visual durante o dash
+		_create_dash_trail()
+		
 		# Verificar se já percorreu a distância do dash
 		if position.distance_to(dash_start_position) >= dash_distance:
 			is_dashing = false
@@ -81,4 +99,73 @@ func _physics_process(delta):
 		b.target = get_global_mouse_position()
 		owner.add_child(b)
 
-			
+func take_damage(amount: int) -> void:
+	# Verifica se o player está invencível
+	if is_invincible:
+		print("Player está invencível, dano ignorado!")
+		return
+	
+	# Aplica o dano
+	life = max(0, life - amount)
+	_update_life_label()
+	
+	# Ativa invencibilidade temporária
+	_start_invincibility()
+	
+	if life == 0:
+		die()
+		
+func die() -> void:
+	# Limpar todos os rastros antes de morrer
+	_clear_all_trails()
+	queue_free()
+
+func _clear_all_trails() -> void:
+	# Remove todos os rastros ativos
+	for trail in dash_trails:
+		if is_instance_valid(trail):
+			trail.queue_free()
+	dash_trails.clear()
+
+func _update_life_label() -> void:
+	if is_instance_valid(life_bar):
+		life_bar.value = life
+
+func _start_invincibility() -> void:
+	is_invincible = true
+	print("Invencibilidade ativada por ", invincibility_duration, " segundos")
+	
+	# Timer para remover a invencibilidade
+	get_tree().create_timer(invincibility_duration).timeout.connect(_end_invincibility)
+
+func _end_invincibility() -> void:
+	is_invincible = false
+	print("Invencibilidade desativada")
+
+func _create_dash_trail() -> void:
+	# Criar um sprite simples de rastro
+	var trail_sprite = Sprite2D.new()
+	trail_sprite.texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	trail_sprite.position = position
+	trail_sprite.scale = sprite.scale * 0.9  # Quase do tamanho original
+	trail_sprite.modulate = Color.WHITE
+	trail_sprite.modulate.a = 0.6  # Menos transparente
+	
+	# Adicionar ao mundo
+	get_parent().add_child(trail_sprite)
+	
+	# Adicionar à lista
+	dash_trails.append(trail_sprite)
+	
+	# Limitar número de rastros
+	if dash_trails.size() > trail_count:
+		var old_trail = dash_trails.pop_front()
+		if is_instance_valid(old_trail):
+			old_trail.queue_free()
+	
+	# Remover após um tempo mais rápido
+	get_tree().create_timer(0.15).timeout.connect(func(): 
+		if is_instance_valid(trail_sprite):
+			trail_sprite.queue_free()
+		dash_trails.erase(trail_sprite)
+	)
