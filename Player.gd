@@ -12,11 +12,12 @@ extends CharacterBody2D
 
 var life: int = 3
 
-@export var dash_distance = 100.0
+@export var dash_duration = 0.1
 @export var dash_speed = 1000.0
 var is_dashing = false
 var dash_direction = Vector2.ZERO
 var dash_start_position = Vector2.ZERO
+@onready var dash_timer: Timer
 
 # Sistema de invencibilidade para evitar dano múltiplo
 var is_invincible = false
@@ -29,6 +30,12 @@ var dash_trails = []
 func _ready():
 	# Adiciona o player ao grupo "player" para detecção pelas traps
 	add_to_group("player")
+	# Configura o timer do dash
+	dash_timer = Timer.new()
+	dash_timer.one_shot = true
+	dash_timer.wait_time = dash_duration
+	add_child(dash_timer)
+	dash_timer.timeout.connect(stop_dashing)
 
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -61,6 +68,10 @@ func start_dash(direction: Vector2):
 		dash_start_position = position
 		velocity = dash_direction * dash_speed
 		print("Dash!")
+		# Inicia o timer para encerrar o dash
+		dash_timer.stop()
+		dash_timer.wait_time = dash_duration
+		dash_timer.start()
 
 func update_dash(delta):
 	if is_dashing:
@@ -70,10 +81,6 @@ func update_dash(delta):
 		# Criar rastro visual durante o dash
 		_create_dash_trail()
 		
-		# Verificar se já percorreu a distância do dash
-		if position.distance_to(dash_start_position) >= dash_distance:
-			is_dashing = false
-			velocity = Vector2.ZERO
 
 func move_8way(delta):
 	get_8way_input()
@@ -83,10 +90,6 @@ func move_8way(delta):
 	# Mover e verificar colisões
 	move_and_slide()
 	
-	# Se estiver fazendo dash e colidiu, parar o dash
-	if is_dashing and is_on_wall():
-		is_dashing = false
-		velocity = Vector2.ZERO
 
 func _physics_process(delta):
 	move_8way(delta)
@@ -98,6 +101,10 @@ func _physics_process(delta):
 		b.position = position
 		b.setup_arrow(get_global_mouse_position())
 		owner.add_child(b)
+
+func stop_dashing() -> void:
+	is_dashing = false
+	velocity = Vector2.ZERO
 
 func take_damage(amount: int) -> void:
 	# Verifica se o player está invencível

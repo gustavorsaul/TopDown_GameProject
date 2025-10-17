@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://15nvswiftxop"]
 
-[ext_resource type="Texture2D" uid="uid://0cqxmejyavv5" path="res://Sprites/Bow/Bow and Arrows.png" id="1_265pn"]
 [ext_resource type="Script" uid="uid://daasdajd5yda3" path="res://Arrow.gd" id="1_a8t2u"]
+[ext_resource type="Texture2D" uid="uid://e56lujbihu7h" path="res://Sprites/pixel-art-sword-icon-silver-260nw-2651106819-removebg-preview.png" id="2_a8t2u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8t2u"]
-atlas = ExtResource("1_265pn")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ca5"]
+atlas = ExtResource("2_a8t2u")
+region = Rect2(0, 0, 280, 260)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_08ca5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a8t2u")
+"texture": SubResource("AtlasTexture_08ca5")
 }],
 "loop": true,
 "name": &"default",
@@ -26,9 +26,9 @@ script = ExtResource("1_a8t2u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(4, 8)
+scale = Vector2(0.0848214, 0.0675481)
 sprite_frames = SubResource("SpriteFrames_08ca5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 7.5)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_a8t2u")
