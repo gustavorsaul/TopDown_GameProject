@@ -176,3 +176,5 @@ func _create_dash_trail() -> void:
 			trail_sprite.queue_free()
 		dash_trails.erase(trail_sprite)
 	)
+	
+	
