@@ -6,13 +6,7 @@ extends Node2D
 
 var active: bool = false
 
-@onready var sprites := [
-	$AnimatedSprite2D,
-	$AnimatedSprite2D2,
-	$AnimatedSprite2D3,
-	$AnimatedSprite2D4
-]
-
+@onready var sprite := $AnimatedSprite2D
 @onready var area := $Area2D
 
 
@@ -20,11 +14,10 @@ func _ready():
 	# Conecta o sinal de colisão
 	area.body_entered.connect(_on_body_entered)
 
-	# Garante que todas as animações começam sincronizadas
-	for s in sprites:
-		s.play("one")
-		s.frame = 0
-		s.frame_progress = 0
+	# Garante que a animação começa sincronizada
+	sprite.play("one")
+	sprite.frame = 0
+	sprite.frame_progress = 0
 
 	# Inicia o ciclo contínuo de "abrir e fechar"
 	start_cycle()
@@ -39,16 +32,14 @@ func _cycle_loop() -> void:
 	while true:
 		# Fase inativa
 		active = false
-		for s in sprites:
-			s.play("one")
-			s.frame = 0
+		sprite.play("one")
+		sprite.frame = 0
 		await get_tree().create_timer(inactive_time).timeout
 
 		# Fase ativa
 		active = true
-		for s in sprites:
-			s.play("one")
-			s.frame = 2   # ajuste conforme o frame "letal" da animação
+		sprite.play("one")
+		sprite.frame = 2   # ajuste conforme o frame "letal" da animação
 		
 		# Verifica se há player em cima da trap quando ela se ativa
 		_check_for_player_on_trap()

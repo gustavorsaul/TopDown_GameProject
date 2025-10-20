@@ -22,17 +22,12 @@ próximos passos:
 	
 	testar arqueiro
 	
-	corrigir flecha terminando no mouse x
-	
 	tentar implementar alguma coisa da hud
 	
 	--próximo:
-		trocar flecha por faca
 		testar troca de arco para mão
 		testar abate de inimigo com mão e pegar espada, usando animação de slash
 		ter arqueiro com raycast que atira intervalado, com jogador desviando até acertar e matar arqueiro
 	
-	
-	arrumar armadilha para uma só
-	deixar apenas corpo a corpo e facas arremessáveis
+		deixar apenas corpo a corpo e facas arremessáveis
 		

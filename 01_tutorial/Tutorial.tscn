@@ -956,9 +956,56 @@ libraries = {
 }
 speed_scale = 1.3
 
-[node name="Trap" parent="." instance=ExtResource("7_r2yp7")]
-show_behind_parent = true
-position = Vector2(-61, 475)
-scale = Vector2(1.2, 1.2)
-
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Traps" type="Node2D" parent="."]
+show_behind_parent = true
+position = Vector2(-63, 456)
+
+[node name="Trap" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(4, 90)
+
+[node name="Trap2" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(34, 90)
+
+[node name="Trap3" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(65, 90)
+
+[node name="Trap4" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(96, 90)
+
+[node name="Trap5" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(4, 52)
+
+[node name="Trap6" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(34, 52)
+
+[node name="Trap7" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(65, 52)
+
+[node name="Trap8" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(96, 52)
+
+[node name="Trap9" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(4, 12)
+
+[node name="Trap10" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(34, 12)
+
+[node name="Trap11" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(65, 12)
+
+[node name="Trap12" parent="Traps" instance=ExtResource("7_r2yp7")]
+show_behind_parent = true
+position = Vector2(96, 12)

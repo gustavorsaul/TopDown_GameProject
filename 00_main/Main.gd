@@ -11,14 +11,8 @@ func _ready() -> void:
 		print("Tutorial carregado automaticamente: ", current_scene.name)
 	
 func _physics_process(delta: float) -> void:
-	if player == null: # quando trocar de cena
-		player = current_scene.get_node_or_null("MainPlayer")
-	
-	# Controles para mudar de cena
-	if Input.is_action_just_pressed("ui_accept"):  # Enter
-		call_deferred("go_to_scene", "res://01_tutorial/Tutorial.tscn")
-	elif Input.is_action_just_pressed("ui_cancel"):  # Escape
-		call_deferred("go_to_scene", "res://02_home/Home.tscn")
+	if player == null and current_scene != null: # quando trocar de cena
+		player = current_scene.get_node("MainPlayer")
 
 func go_to_scene(path :String):
 	print("Going to Scene:" + path)
