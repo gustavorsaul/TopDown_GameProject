@@ -1,0 +1,17 @@
+
+
+extends Node2D
+
+func _ready():
+
+	# Conecta os sinais manualmente (para evitar loops automáticos)
+	var home = get_node_or_null("Area2D")
+	if home:
+		home.connect("body_entered", Callable(self, "_on_home_body_entered"))
+
+# --- Funções de transição individual --- #
+
+func _on_home_body_entered(body: Node) -> void:
+	if body.name == "MainPlayer":
+		print("Player entrou na Home → indo para Home.tscn")
+		get_tree().change_scene_to_file("res://02_home/Home.tscn")
