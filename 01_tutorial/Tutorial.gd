@@ -13,5 +13,7 @@ func _ready():
 
 func _on_home_body_entered(body: Node) -> void:
 	if body.name == "MainPlayer":
+		# Marca o tutorial como concluído no GlobalVars
+		GlobalVars.complete_tutorial()
 		print("Player entrou na Home → indo para Home.tscn")
 		get_tree().change_scene_to_file("res://02_home/Home.tscn")

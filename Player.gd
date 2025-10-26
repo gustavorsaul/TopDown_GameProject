@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @onready var tiros = 0
 
-var life: int = 3
+# Vida gerenciada pelo GlobalVars
 
 @export var dash_duration = 0.1
 @export var dash_speed = 1000.0
@@ -36,6 +36,9 @@ func _ready():
 	dash_timer.wait_time = dash_duration
 	add_child(dash_timer)
 	dash_timer.timeout.connect(stop_dashing)
+	
+	# Atualiza a barra de vida com o valor atual do GlobalVars
+	_update_life_label()
 
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -112,20 +115,29 @@ func take_damage(amount: int) -> void:
 		print("Player está invencível, dano ignorado!")
 		return
 	
-	# Aplica o dano
-	life = max(0, life - amount)
+	# Aplica o dano usando o GlobalVars
+	GlobalVars.reduce_player_life(amount)
 	_update_life_label()
 	
 	# Ativa invencibilidade temporária
 	_start_invincibility()
 	
-	if life == 0:
+	# Verifica se o jogador morreu
+	if GlobalVars.get_player_lives() <= 0:
 		die()
 		
 func die() -> void:
+	print("Player morreu! Iniciando respawn...")
+	
 	# Limpar todos os rastros antes de morrer
 	_clear_all_trails()
-	queue_free()
+	
+	# Obter a cena de respawn
+	var respawn_scene = GlobalVars.get_respawn_scene()
+	print("Mudando para a cena: ", respawn_scene)
+	
+	# Mudar para a cena de respawn
+	get_tree().change_scene_to_file(respawn_scene)
 
 func _clear_all_trails() -> void:
 	# Remove todos os rastros ativos
@@ -136,7 +148,7 @@ func _clear_all_trails() -> void:
 
 func _update_life_label() -> void:
 	if is_instance_valid(life_bar):
-		life_bar.value = life
+		life_bar.value = GlobalVars.get_player_lives()
 
 func _start_invincibility() -> void:
 	is_invincible = true

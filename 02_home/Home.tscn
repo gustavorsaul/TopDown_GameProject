@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://crn7pf2nao1ye"]
+[gd_scene load_steps=18 format=4 uid="uid://crn7pf2nao1ye"]
 
 [ext_resource type="Script" uid="uid://b8ijqpedaom2o" path="res://02_home/Home.gd" id="1_aqia3"]
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_p7jds"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bioh2okntlm10" path="res://Sprites/Environment/Tiled_files/decorative_cracks_floor.png" id="3_8d66r"]
 [ext_resource type="Texture2D" uid="uid://cx7r52k7pya5d" path="res://Sprites/Environment/Tiled_files/decorative_cracks_coasts_animation.png" id="4_hmuel"]
 [ext_resource type="Texture2D" uid="uid://c5ebvvn2cl77p" path="res://Sprites/Environment/decorative_cracks_floor_edit.png" id="5_roq0o"]
+[ext_resource type="Texture2D" uid="uid://dde71e7qy70d7" path="res://Sprites/golden-lock-sticker-pixel-art-260nw-2127860972-removebg-preview.png" id="7_8d66r"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdght"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqia3"]
 texture = ExtResource("2_aqia3")
 0:0/0 = 0
 1:0/0 = 0
@@ -282,9 +283,9 @@ texture = ExtResource("2_aqia3")
 
 [sub_resource type="TileSet" id="TileSet_k55cv"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_kdght")
+sources/0 = SubResource("TileSetAtlasSource_aqia3")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5h8pp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8d66r"]
 texture = ExtResource("3_8d66r")
 0:0/0 = 0
 1:0/0 = 0
@@ -407,7 +408,7 @@ texture = ExtResource("3_8d66r")
 6:14/0 = 0
 7:14/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7trte"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmuel"]
 texture = ExtResource("4_hmuel")
 1:1/0 = 0
 2:1/0 = 0
@@ -746,7 +747,7 @@ texture = ExtResource("4_hmuel")
 16:23/0 = 0
 17:23/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0pkm3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq0o"]
 texture = ExtResource("5_roq0o")
 0:0/0 = 0
 1:0/0 = 0
@@ -870,12 +871,39 @@ texture = ExtResource("5_roq0o")
 7:14/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vnhn1"]
-sources/0 = SubResource("TileSetAtlasSource_5h8pp")
-sources/1 = SubResource("TileSetAtlasSource_7trte")
-sources/2 = SubResource("TileSetAtlasSource_0pkm3")
+sources/0 = SubResource("TileSetAtlasSource_8d66r")
+sources/1 = SubResource("TileSetAtlasSource_hmuel")
+sources/2 = SubResource("TileSetAtlasSource_roq0o")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7jds"]
 size = Vector2(27, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmuel"]
+atlas = ExtResource("7_8d66r")
+region = Rect2(145, 0, 145, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roq0o"]
+atlas = ExtResource("7_8d66r")
+region = Rect2(0, 0, 145, 187)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdght"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmuel")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roq0o")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
 
 [node name="Home" type="Node2D"]
 script = ExtResource("1_aqia3")
@@ -935,3 +963,11 @@ position = Vector2(549, 256)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room_N4"]
 position = Vector2(13.5, 64)
 shape = SubResource("RectangleShape2D_p7jds")
+
+[node name="Locker1" type="AnimatedSprite2D" parent="."]
+top_level = true
+texture_filter = 1
+position = Vector2(-301, -154)
+scale = Vector2(0.799138, 0.678476)
+sprite_frames = SubResource("SpriteFrames_kdght")
+animation = &"closed"
