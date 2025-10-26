@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=3 uid="uid://b15sdk3kj4sol"]
+
+[ext_resource type="Texture2D" uid="uid://ofikypfwymxq" path="res://Sprites/Traps/Push_Trap_Right.png" id="1_cyndq"]
+[ext_resource type="Script" uid="uid://bft2c871spg6u" path="res://03_room_n1/MarteloParedeTrap.gd" id="1_i7ps8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7ps8"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xswgy"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdhkh"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlgp7"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk7mr"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0k8m"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqggi"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd0k6"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stj0h"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kflog"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2q44"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsk0f"]
+atlas = ExtResource("1_cyndq")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05nc3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7ps8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xswgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdhkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlgp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk7mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0k8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqggi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd0k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stj0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kflog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2q44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsk0f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_xswgy"]
+script/source = "extends AnimatedSprite2D
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxqc4"]
+size = Vector2(96, 70)
+
+[node name="MarteloParedeTrap" type="Node2D"]
+script = ExtResource("1_i7ps8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 2.181)
+sprite_frames = SubResource("SpriteFrames_05nc3")
+frame_progress = 0.569383
+script = SubResource("GDScript_xswgy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hxqc4")

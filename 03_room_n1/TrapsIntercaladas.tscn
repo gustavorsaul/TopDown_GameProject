@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://33d3le21kwic"]
+
+[ext_resource type="PackedScene" uid="uid://bom08scktjla7" path="res://Trap.tscn" id="1_xpoow"]
+
+[node name="TrapsIntercaladas" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_xpoow")]
+
+[node name="Node2D2" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(26, 30)
+
+[node name="Node2D3" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(52, 0)
+
+[node name="Node2D4" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(78, 30)
+
+[node name="Node2D5" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(104, 0)
+
+[node name="Node2D6" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(0, 60)
+
+[node name="Node2D7" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(52, 60)
+
+[node name="Node2D8" parent="." instance=ExtResource("1_xpoow")]
+position = Vector2(104, 60)

@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://y2vlmyktfwl5"]
+
+[ext_resource type="Script" uid="uid://c32icupkhb5ti" path="res://03_room_n1/BladeTrap.gd" id="1_c88pi"]
+[ext_resource type="Texture2D" uid="uid://drboqbi22h313" path="res://Sprites/Traps/2/00 All.png" id="1_ldmkr"]
+
+[sub_resource type="Curve2D" id="Curve2D_0mmv2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 349, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c88pi"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(0, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0fsh"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(32, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo8pn"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(64, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enu8l"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(96, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hywq"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(128, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtgul"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(160, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcsv6"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(192, 0, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md8yj"]
+atlas = ExtResource("1_ldmkr")
+region = Rect2(224, 0, 32, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ag316"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c88pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0fsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo8pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enu8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hywq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtgul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcsv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md8yj")
+}],
+"loop": true,
+"name": &"move",
+"speed": 50.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldmkr"]
+radius = 17.5
+
+[node name="BladeTrap" type="Node2D"]
+script = ExtResource("1_c88pi")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0mmv2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ag316")
+animation = &"move"
+frame_progress = 0.372702
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_ldmkr")
