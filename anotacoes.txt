@@ -1,3 +1,4 @@
+
 na tela de tutorial:
 	nasce e precisa abater primeiro inimigo que corre até ele com soco
 	ao eliminar enimigo, pega a espada dele
@@ -31,3 +32,7 @@ próximos passos:
 	
 		deixar apenas corpo a corpo e facas arremessáveis
 		
+		
+	- corrigir instanciação de cenas e troca entre elas
+	- tentar colocar timer nas traps
+	- testar raycast

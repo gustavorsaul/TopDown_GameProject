@@ -1,29 +1,3 @@
-#extends Node2D
-#
-#var room_scene_paths = {
-	#"Room_N1": "res://03_room_n1/Room_N1.tscn",
-	#"Room_N2": "res://04_room_n2/Room_N2.tscn",
-	#"Room_N3": "res://05_room_n3/Room_N3.tscn",
-	#"Room_N4": "res://06_room_n4/Room_N4.tscn"
-#}
-#
-#func _ready():
-	## Conecta dinamicamente os sinais das áreas
-	#for room_name in room_scene_paths.keys():
-		#var room = get_node(room_name)
-		#if room:
-			#room.connect("body_entered", Callable(self, "_on_room_entered"))
-#
-	## Ativa a visualização das colisões
-#
-#func _on_room_entered(body):
-	#if body.name == "MainPlayer":
-		#var room_name = body.get_parent().name if body.get_parent() else ""
-		#if room_name in room_scene_paths:
-			#var scene_path = room_scene_paths[room_name]
-			#print("Entrando em %s..." % room_name)
-			#get_tree().change_scene_to_file(scene_path)
-
 
 extends Node2D
 

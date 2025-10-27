@@ -10,18 +10,16 @@ var active: bool = false
 @onready var area := $Area2D
 
 
-func _ready():
-	# Conecta o sinal de colisão
-	area.body_entered.connect(_on_body_entered)
+var running := true
 
-	# Garante que a animação começa sincronizada
+func _ready():
+	area.body_entered.connect(_on_body_entered)
 	sprite.play("one")
 	sprite.frame = 0
-	sprite.frame_progress = 0
-
-	# Inicia o ciclo contínuo de "abrir e fechar"
 	start_cycle()
 
+func _exit_tree():
+	running = false
 
 func start_cycle() -> void:
 	# Cria uma coroutine separada com await — Godot 4 permite isso assim:
@@ -29,22 +27,24 @@ func start_cycle() -> void:
 
 
 func _cycle_loop() -> void:
-	while true:
-		# Fase inativa
+	while running:
 		active = false
 		sprite.play("one")
 		sprite.frame = 0
-		await get_tree().create_timer(inactive_time).timeout
+		if !is_inside_tree():
+			return
+		await get_tree().create_timer(inactive_time, false).timeout
+		if !running or !is_inside_tree():
+			return
 
-		# Fase ativa
 		active = true
 		sprite.play("one")
-		sprite.frame = 2   # ajuste conforme o frame "letal" da animação
-		
-		# Verifica se há player em cima da trap quando ela se ativa
+		sprite.frame = 2
 		_check_for_player_on_trap()
-		
-		await get_tree().create_timer(active_time).timeout
+		if !is_inside_tree():
+			return
+		await get_tree().create_timer(active_time, false).timeout
+
 
 
 func _check_for_player_on_trap() -> void:

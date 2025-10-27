@@ -110,6 +110,7 @@ func stop_dashing() -> void:
 	velocity = Vector2.ZERO
 
 func take_damage(amount: int) -> void:
+	
 	# Verifica se o player está invencível
 	if is_invincible:
 		print("Player está invencível, dano ignorado!")
@@ -118,13 +119,17 @@ func take_damage(amount: int) -> void:
 	# Aplica o dano usando o GlobalVars
 	GlobalVars.reduce_player_life(amount)
 	_update_life_label()
-	
-	# Ativa invencibilidade temporária
 	_start_invincibility()
-	
-	# Verifica se o jogador morreu
+	print("Verificando vida")
+
+	print("Vidas:", GlobalVars.player_lives)
+	print("Tentativas:", GlobalVars.player_attempts)
+
 	if GlobalVars.get_player_lives() <= 0:
-		die()
+		print("morreu")
+		die()  # animação, etc.
+		GlobalVars.handle_attempt_reset()
+
 		
 func die() -> void:
 	print("Player morreu! Iniciando respawn...")

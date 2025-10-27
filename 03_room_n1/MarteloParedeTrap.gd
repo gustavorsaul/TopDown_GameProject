@@ -13,33 +13,35 @@ var active: bool = false
 
 
 func _ready():
-	# Conecta o sinal de colisão
 	area.body_entered.connect(_on_body_entered)
-
-	# Inicia a animação contínua
 	sprite.play(animation_name)
 	active = false
+	_check_cycle_task()
 
-	# Começa a checar o frame atual da animação em loop
-	_check_cycle()
+func _exit_tree():
+	# Marca para parar o loop quando o nó for removido
+	active = false
 
+func _check_cycle_task() -> void:
+	# aguarda até o nó realmente estar dentro da árvore
+	await ready
 
-func _check_cycle() -> void:
-	# Cria uma task em loop pra sincronizar com os frames da animação
-	await get_tree().create_timer(check_interval).timeout
+	while is_inside_tree():
+		# segurança — evita nulls durante troca de cena
+		var tree := get_tree()
+		if tree == null:
+			return
 
-	var frame = sprite.frame
+		var frame = sprite.frame
+		active = frame >= active_start_frame and frame <= active_end_frame
 
-	# Ativa dano somente dentro do intervalo de frames definido
-	if frame >= active_start_frame and frame <= active_end_frame:
-		if not active:
-			active = true
+		if active:
 			_check_for_player_on_trap()
-	else:
-		active = false
 
-	# Continua o loop indefinidamente
-	_check_cycle()
+		# espera um pequeno intervalo antes de checar novamente
+		await tree.create_timer(check_interval, false).timeout
+
+
 
 
 func _check_for_player_on_trap() -> void:

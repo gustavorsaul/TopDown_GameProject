@@ -74,18 +74,15 @@ func get_respawn_scene():
 func reduce_player_life(amount=1):
 	player_lives -= amount
 	print("[GlobalVars] Vidas restantes: ", player_lives)
-	
-	if player_lives <= 0:
-		player_attempts += 1
-		print("[GlobalVars] Tentativa atual: ", player_attempts)
-		
-		if player_attempts >= 3:
-			# Game over - resetar tudo
-			reset_player_stats()
-			print("[GlobalVars] GAME OVER - Estatísticas resetadas")
-		else:
-			# Apenas resetar as vidas para a próxima tentativa
-			player_lives = 3
-			print("[GlobalVars] Vidas resetadas para 3 (Tentativa ", player_attempts, " de 3)")
-	
 	return player_lives
+
+func handle_attempt_reset():
+	player_attempts += 1
+	print("[GlobalVars] Tentativa atual:", player_attempts)
+	
+	if player_attempts > 3:
+		reset_player_stats()
+		print("[GlobalVars] GAME OVER - Estatísticas resetadas")
+	else:
+		player_lives = 3
+		print("[GlobalVars] Vidas resetadas para 3 (Tentativa ", player_attempts, " de 3)")
