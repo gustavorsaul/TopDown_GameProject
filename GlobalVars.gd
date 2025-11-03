@@ -54,7 +54,7 @@ func get_player_attempts():
 	return player_attempts
 
 func reset_player_stats():
-	player_lives = 10
+	player_lives = 3
 	player_attempts = 0
 
 # Função para marcar uma sala como concluída
