@@ -17,17 +17,24 @@ script = ExtResource("1_51a2b")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Tentativas" type="Label" parent="HUD"]
-offset_left = 845.0
-offset_top = 4.0
-offset_right = 970.0
-offset_bottom = 36.0
+offset_right = 132.0
+offset_bottom = 35.0
 text = "Tentativas:"
 label_settings = SubResource("LabelSettings_51a2b")
+metadata/_edit_use_anchors_ = true
 
 [node name="Vida" type="Label" parent="HUD"]
-offset_left = 847.0
-offset_top = 43.0
-offset_right = 906.0
-offset_bottom = 78.0
+offset_top = 34.0
+offset_right = 59.0
+offset_bottom = 69.0
 text = "Vida:"
 label_settings = SubResource("LabelSettings_utqqy")
+metadata/_edit_use_anchors_ = true
+
+[node name="DashCount" type="Label" parent="HUD"]
+offset_top = 71.0
+offset_right = 132.0
+offset_bottom = 106.0
+text = "Tentativas:"
+label_settings = SubResource("LabelSettings_51a2b")
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://1cwtjkbpb60g"]
+
+[ext_resource type="Script" uid="uid://biydbmugwquoa" path="res://04_room_n2/Archer.gd" id="1_8n7s6"]
+[ext_resource type="Texture2D" uid="uid://uidj58y2be62" path="res://Sprites/Archer/S_Attack_left.png" id="1_mg24b"]
+[ext_resource type="Texture2D" uid="uid://csyw7d244hhkl" path="res://Sprites/Archer/S_Attack_right.png" id="2_8n7s6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n7s6"]
+atlas = ExtResource("1_mg24b")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahi8p"]
+atlas = ExtResource("1_mg24b")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p86kj"]
+atlas = ExtResource("1_mg24b")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo8ch"]
+atlas = ExtResource("1_mg24b")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn6lb"]
+atlas = ExtResource("2_8n7s6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vnlg"]
+atlas = ExtResource("2_8n7s6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1sef"]
+atlas = ExtResource("2_8n7s6")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u43mv"]
+atlas = ExtResource("2_8n7s6")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7q2pp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n7s6")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahi8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p86kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo8ch")
+}],
+"loop": false,
+"name": &"left_shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn6lb")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vnlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1sef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u43mv")
+}],
+"loop": false,
+"name": &"right_shooting",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg24b"]
+size = Vector2(14.3333, 26)
+
+[node name="Archer" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_8n7s6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_7q2pp")
+animation = &"left_shooting"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -7.5)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_mg24b")
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -30.0
+max_value = 3.0
+value = 3.0
+show_percentage = false

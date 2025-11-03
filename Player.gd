@@ -44,7 +44,8 @@ func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	
 	# Verificar se shift foi pressionado para dash
-	if Input.is_action_just_pressed("shift") and input_direction != Vector2.ZERO:
+	if Input.is_action_just_pressed("shift") and input_direction != Vector2.ZERO and GlobalVars.dash_number > 0:
+		GlobalVars.dash_number -= 1
 		start_dash(input_direction)
 	
 	# Se não estiver fazendo dash, movimento normal
@@ -131,18 +132,20 @@ func take_damage(amount: int) -> void:
 		GlobalVars.handle_attempt_reset()
 
 		
+signal player_died(respawn_path: String)
+
 func die() -> void:
 	print("Player morreu! Iniciando respawn...")
-	
-	# Limpar todos os rastros antes de morrer
+
+	# Limpa efeitos visuais
 	_clear_all_trails()
 	
-	# Obter a cena de respawn
+	# Obtém o caminho da cena de respawn
 	var respawn_scene = GlobalVars.get_respawn_scene()
-	print("Mudando para a cena: ", respawn_scene)
-	
-	# Mudar para a cena de respawn
-	get_tree().change_scene_to_file(respawn_scene)
+	print("Emitindo sinal para respawn na cena:", respawn_scene)
+
+	# Em vez de trocar a cena diretamente:
+	emit_signal("player_died", respawn_scene)
 
 func _clear_all_trails() -> void:
 	# Remove todos os rastros ativos

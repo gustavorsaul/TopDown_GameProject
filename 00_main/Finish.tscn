@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgu8j7gwyx3ac"]
+
+[ext_resource type="Script" uid="uid://ddl5qitkh0rib" path="res://00_main/Finish.gd" id="1_q16g2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ltt46"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_swxy3"]
+texture = SubResource("CanvasTexture_ltt46")
+modulate_color = Color(0.23, 0.23, 0.23, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmqu2"]
+font_size = 50
+
+[node name="Finish" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q16g2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_swxy3")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -48.5
+offset_right = 159.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "PLAY AGAIN"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -377.0
+offset_top = 75.0
+offset_right = 377.0
+offset_bottom = 237.0
+grow_horizontal = 2
+text = "YOU SCAPED!
+CONGRATULATIONS"
+label_settings = SubResource("LabelSettings_qmqu2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_playagain_pressed"]

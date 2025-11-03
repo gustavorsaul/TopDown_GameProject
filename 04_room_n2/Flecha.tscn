@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbmvyav1t7van"]
+
+[ext_resource type="Texture2D" uid="uid://dgob86keiwxeu" path="res://Sprites/Apocalypse Character Pack/Player/Arrow.png" id="1_oarw0"]
+[ext_resource type="Script" uid="uid://uvpssrkamv60" path="res://04_room_n2/Flecha.gd" id="1_xumqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oarw0"]
+size = Vector2(11, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xumqb"]
+atlas = ExtResource("1_oarw0")
+region = Rect2(0, 105, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqqqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xumqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Flecha" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_xumqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 1.5)
+shape = SubResource("RectangleShape2D_oarw0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(5, -1)
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_nqqqg")

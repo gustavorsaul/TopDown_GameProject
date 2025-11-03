@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://8f81dghtdxqr"]
+
+[ext_resource type="Script" uid="uid://sh6qnx4toqrv" path="res://00_main/MainMenu.gd" id="1_a350c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a350c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a350c"]
+texture = SubResource("CanvasTexture_a350c")
+modulate_color = Color(0.23, 0.23, 0.23, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v2iwm"]
+font_size = 49
+
+[sub_resource type="LabelSettings" id="LabelSettings_a350c"]
+font_size = 35
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 2.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a350c")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a350c")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -102.5
+offset_right = 159.0
+offset_bottom = -5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "START GAME"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -377.0
+offset_top = 26.0
+offset_right = 377.0
+offset_bottom = 188.0
+grow_horizontal = 2
+text = "THE FORGOTTEN PRISONER"
+label_settings = SubResource("LabelSettings_v2iwm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -226.0
+offset_right = 480.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 1
+text = "W, A, S, D : movimentação em oito direções
+SHIFT : uso do dash
+MOUSE BOTÃO ESQ : atira adaga"
+label_settings = SubResource("LabelSettings_a350c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
