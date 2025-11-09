@@ -6,7 +6,15 @@ signal level_finished(next_scene_path: String)
 @onready var locker2 := $Locker2
 @onready var final_area := $Final
 
+@onready var player := get_node("MainPlayer")
+
 func _ready():
+	
+	var spawn_pos = GlobalVars.get_next_respawn()
+	if spawn_pos != Vector2.ZERO:
+		player.position = spawn_pos
+		print("Player respawnado em:", spawn_pos)
+	
 	# Conecta as áreas de transição para salas
 	var room_n1 = get_node_or_null("Room_N1")
 	if room_n1:
@@ -30,12 +38,12 @@ func _ready():
 # --- Transições individuais --- #
 
 func _on_room_n1_body_entered(body: Node) -> void:
-	if body.name == "MainPlayer":
+	if body.name == "MainPlayer" and !GlobalVars.room_n1_part2:
 		print("Player entrou na Sala N1 → emitindo sinal para carregar Room_N1.tscn")
 		emit_signal("level_finished", "res://03_room_n1/Room_N1.tscn")
 
 func _on_room_n2_body_entered(body: Node) -> void:
-	if body.name == "MainPlayer":
+	if body.name == "MainPlayer" and !GlobalVars.room_n2_part2:
 		print("Player entrou na Sala N2 → emitindo sinal para carregar Room_N2.tscn")
 		emit_signal("level_finished", "res://04_room_n2/Room_N2.tscn")
 

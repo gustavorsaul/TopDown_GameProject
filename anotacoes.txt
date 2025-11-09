@@ -39,3 +39,37 @@ próximos passos:
 	
 	
 	The Forgotten Prisoner
+
+
+Versão em tópicos organizados
+1. Tutorial
+
+Inimigo do tutorial ainda não faz nada. x
+Não é possível retornar ao tutorial depois de sair. x
+Necessidade de matar o guarda é desnecessária. x
+Bug: morrer ao completar o tutorial. ?
+
+2. Clareza visual e feedback ao jogador
+
+Portas e cadeados não são autoexplicativos.
+Falta aviso claro de conclusão da fase.
+Troca de cenas confusa e difícil de identificar.
+
+3. Mecânicas e bugs
+
+Traps causam dano sem o jogador pisar.
+Traps giratórias estão muito rápidas.
+Posicionamento das traps pode ser melhorado.
+Arqueiros estão respawnando indevidamente.
+Possibilidade de voltar a salas já completadas. x
+
+4. Balanceamento
+
+Facas ilimitadas tornam o jogo fácil demais. x
+Dash considerado pouco útil no estado atual.
+Personagem está muito forte em relação aos desafios. 
+Vida do personagem não reseta corretamente e pode exibir valores altos demais. x
+Falta de formas de recuperar vida.
+
+
+adicionar +1 arqueiro no tutorial, ficando no total 2 e linkando eles com a porta

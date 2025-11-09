@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var arrow_scene: PackedScene = preload("res://04_room_n2/Flecha.tscn")
-@export var shoot_interval: float = 1.0
+@export var shoot_interval: float = 1.5
 @export var vision_range: float = 1000.0  # Alcance máximo de visão do arqueiro
 
 @onready var sprite = $AnimatedSprite2D
@@ -50,7 +50,10 @@ func _ready() -> void:
 	
 	# Encontrar o player na cena
 	await get_tree().process_frame
-	player = get_tree().get_first_node_in_group("player")
+	if get_tree() and get_tree().has_group("player"):
+		player = get_tree().get_first_node_in_group("player")
+
+
 	if not player:
 		print("ERRO: Player não encontrado! Certifique-se de que o player está na cena e no grupo 'player'")
 
@@ -58,8 +61,13 @@ func _process(delta: float) -> void:
 	# Verificar se o player está na cena
 	if player and not is_shooting:
 		# Atualizar a direção do raycast para apontar para o player
-		var direction_to_player = (player.global_position - global_position).normalized()
+		# Tenta mirar no AimPoint do player
+		var target_node = player.get_node_or_null("AimPoint")
+		var target_position = target_node.global_position if target_node else player.global_position
+
+		var direction_to_player = (target_position - global_position).normalized()
 		ray_cast.target_position = direction_to_player * vision_range
+
 		
 		# Verificar se o player está dentro do alcance e visível
 		var distance_to_player = global_position.distance_to(player.global_position)
@@ -88,8 +96,15 @@ func _on_animation_finished() -> void:
 func _on_shoot_timer_timeout() -> void:
 	if can_shoot and not is_shooting and player:
 		# Verificar se o player está no alcance e visível
-		var direction_to_player = (player.global_position - global_position).normalized()
+		
+		# Tenta mirar no AimPoint do player
+		var target_node = player.get_node_or_null("AimPoint")
+		var target_position = target_node.global_position if target_node else player.global_position
+
+		var direction_to_player = (target_position - global_position).normalized()
 		ray_cast.target_position = direction_to_player * vision_range
+
+		
 		ray_cast.force_raycast_update()
 		
 		var distance_to_player = global_position.distance_to(player.global_position)

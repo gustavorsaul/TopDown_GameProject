@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c847k6mlmtip"]
+[gd_scene load_steps=20 format=4 uid="uid://c847k6mlmtip"]
 
 [ext_resource type="Script" uid="uid://c7cdggrh71j5w" path="res://03_room_n1/Room_N1.gd" id="1_0udbt"]
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_mkgsi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://wiwb0wc0hxdn" path="res://Sprites/Environment/floor colors.png" id="7_a0h5n"]
 [ext_resource type="PackedScene" uid="uid://b15sdk3kj4sol" path="res://03_room_n1/MarteloParedeTrap.tscn" id="7_aqfnf"]
 [ext_resource type="PackedScene" uid="uid://y2vlmyktfwl5" path="res://03_room_n1/BladeTrap.tscn" id="8_oriq3"]
+[ext_resource type="PackedScene" uid="uid://doyob6jir7ytw" path="res://03_room_n1/Lever.tscn" id="11_rwm57"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0udbt"]
 texture = ExtResource("2_bjivu")
@@ -1075,6 +1076,7 @@ rotation = 3.14159
 scale = Vector2(0.8, 0.8)
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(-96, -1632)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -1107,3 +1109,7 @@ position = Vector2(-96, -95)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnHome"]
 position = Vector2(96, 15.5)
 shape = SubResource("RectangleShape2D_oriq3")
+
+[node name="Lever" parent="." instance=ExtResource("11_rwm57")]
+position = Vector2(0, -1551)
+scale = Vector2(0.5, 0.5)

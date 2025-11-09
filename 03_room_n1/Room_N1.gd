@@ -1,34 +1,27 @@
 extends Node2D
-
 signal level_finished(next_scene_path: String)
 
-@onready var end_area := get_node_or_null("Area2D")
+@onready var lever := get_node_or_null("Lever")
 @onready var return_home := get_node_or_null("ReturnHome")
 
 func _ready():
-	# Conecta o sinal do final da sala
-	if end_area:
-		end_area.connect("body_entered", Callable(self, "_on_end_area_entered"))
-	
-	# Conecta o sinal da área de retorno, mas deixa ela desativada
+	if lever:
+		lever.connect("lever_activated", Callable(self, "_on_lever_activated"))
 	if return_home:
 		return_home.connect("body_entered", Callable(self, "_on_return_home_entered"))
-		return_home.set_deferred("monitoring", false)  # começa desativado
+		return_home.set_deferred("monitoring", false)
 
-# --- Quando o player chega ao final da sala ---
-func _on_end_area_entered(body: Node) -> void:
-	if body.name == "MainPlayer":
-		GlobalVars.complete_room("room_n1")
-		print("Player completou a Room N1 → ativando retorno!")
-		
-		# Ativa a área de retorno
-		if return_home:
-			return_home.set_deferred("monitoring", true)
-			print("Área de retorno agora está ativa!")
+func _on_lever_activated(room_id: String):
+	print("Alavanca da", room_id, "ativada → liberando retorno.")
+	if return_home:
+		return_home.set_deferred("monitoring", true)
 
-# --- Quando o player retorna para a entrada ---
 func _on_return_home_entered(body: Node) -> void:
 	if body.name == "MainPlayer":
 		GlobalVars.complete_room_part2(1)
+		
+		# Define o respawn do player ao voltar para Home
+		GlobalVars.set_next_respawn(Vector2(-285, 285))  
+		
 		print("Player voltou para a entrada → emitindo sinal para Home")
 		emit_signal("level_finished", "res://02_home/Home.tscn")

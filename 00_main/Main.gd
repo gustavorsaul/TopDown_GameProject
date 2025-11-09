@@ -16,6 +16,9 @@ func _ready() -> void:
 	# Conectar sinais da cena e do player
 	_connect_scene_signals()
 	update_hud_labels()
+	
+	await get_tree().process_frame
+	await Transition.fade_in()
 
 func _physics_process(delta: float) -> void:
 	if player == null and current_scene != null:
@@ -45,6 +48,8 @@ func _connect_player_signal() -> void:
 # --- Troca de cena sem destruir HUD --- #
 
 func go_to_scene(path : String):
+	await Transition.fade_out()
+	
 	print("Going to Scene: " + path)
 	if current_scene:
 		current_scene.queue_free()
@@ -57,7 +62,8 @@ func go_to_scene(path : String):
 
 	# Conecta os sinais de cena e player novamente
 	_connect_scene_signals()
-
+	
+	await Transition.fade_in()
 # --- Callbacks de sinais --- #
 
 func _on_level_finished(next_scene_path: String):

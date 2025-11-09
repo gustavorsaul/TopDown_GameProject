@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bltn1dc62fi0r"]
+[gd_scene load_steps=19 format=4 uid="uid://bltn1dc62fi0r"]
 
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_mxxyh"]
 [ext_resource type="Script" uid="uid://bk37jb317w7bn" path="res://04_room_n2/Room_N2.gd" id="1_yx00q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c5ebvvn2cl77p" path="res://Sprites/Environment/decorative_cracks_floor_edit.png" id="5_hspyb"]
 [ext_resource type="Texture2D" uid="uid://wiwb0wc0hxdn" path="res://Sprites/Environment/floor colors.png" id="6_iwqnj"]
 [ext_resource type="PackedScene" uid="uid://1cwtjkbpb60g" path="res://04_room_n2/Archer.tscn" id="7_tew84"]
+[ext_resource type="PackedScene" uid="uid://doyob6jir7ytw" path="res://03_room_n1/Lever.tscn" id="9_hspyb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss5bo"]
 texture = ExtResource("2_21eqg")
@@ -1044,6 +1045,7 @@ position = Vector2(96, 15.5)
 shape = SubResource("RectangleShape2D_21eqg")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(-96, -1632)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -1073,3 +1075,7 @@ position = Vector2(801, -1154)
 
 [node name="Archer8" parent="." instance=ExtResource("7_tew84")]
 position = Vector2(798, -1075)
+
+[node name="Lever" parent="." instance=ExtResource("9_hspyb")]
+position = Vector2(0, -1567)
+scale = Vector2(0.5, 0.5)

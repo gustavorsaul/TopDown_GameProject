@@ -5,6 +5,8 @@ var player_lives = 3
 var player_attempts = 1
 
 
+var current_room: String = ""
+
 
 # Estado das salas (false = não concluída, true = concluída)
 var room_n1_part1 = false
@@ -26,6 +28,15 @@ var dash_number = 2
 var dash_max: int = 2
 
 var _dash_timer: Timer
+
+var next_respawn_position: Vector2 = Vector2.ZERO
+
+func set_next_respawn(pos: Vector2):
+	next_respawn_position = pos
+
+func get_next_respawn() -> Vector2:
+	return next_respawn_position
+
 
 func _ready():
 	# Cria e configura o Timer
@@ -111,6 +122,7 @@ func handle_attempt_reset():
 	if player_attempts > 3:
 		reset_player_stats()
 		print("[GlobalVars] GAME OVER - Estatísticas resetadas")
+		await Transition.fade_out()
 		get_tree().change_scene_to_file("res://00_main/GameOver.tscn")
 	else:
 		player_lives = 3

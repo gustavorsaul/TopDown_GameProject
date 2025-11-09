@@ -19,6 +19,11 @@ var dash_direction = Vector2.ZERO
 var dash_start_position = Vector2.ZERO
 @onready var dash_timer: Timer
 
+@export var shoot_cooldown = 0.5
+var can_shoot = true
+@onready var shoot_timer: Timer
+
+
 # Sistema de invencibilidade para evitar dano múltiplo
 var is_invincible = false
 @export var invincibility_duration = 1  # duração da invencibilidade em segundos
@@ -37,8 +42,20 @@ func _ready():
 	add_child(dash_timer)
 	dash_timer.timeout.connect(stop_dashing)
 	
+	shoot_timer = Timer.new()
+	shoot_timer.one_shot = true
+	shoot_timer.wait_time = shoot_cooldown
+	add_child(shoot_timer)
+	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
+
+	
 	# Atualiza a barra de vida com o valor atual do GlobalVars
+	await get_tree().process_frame
 	_update_life_label()
+
+func _on_shoot_timer_timeout() -> void:
+	can_shoot = true
+
 
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -98,13 +115,19 @@ func move_8way(delta):
 func _physics_process(delta):
 	move_8way(delta)
 	
-	if (Input.is_action_just_pressed("mouseLeft")):
-		tiros += 1
-		print("Tiro ", tiros)
-		var b := arrow.instantiate()
-		b.position = position
-		b.setup_arrow(get_global_mouse_position())
-		owner.add_child(b)
+	if Input.is_action_just_pressed("mouseLeft") and can_shoot:
+		shoot()
+
+func shoot() -> void:
+	can_shoot = false
+	shoot_timer.start()
+	tiros += 1
+	print("Tiro ", tiros)
+	var b := arrow.instantiate()
+	b.position = position
+	b.setup_arrow(get_global_mouse_position())
+	owner.add_child(b)
+
 
 func stop_dashing() -> void:
 	is_dashing = false
@@ -142,6 +165,7 @@ func die() -> void:
 	
 	# Obtém o caminho da cena de respawn
 	var respawn_scene = GlobalVars.get_respawn_scene()
+	GlobalVars.next_respawn_position = Vector2.ZERO
 	print("Emitindo sinal para respawn na cena:", respawn_scene)
 
 	# Em vez de trocar a cena diretamente:

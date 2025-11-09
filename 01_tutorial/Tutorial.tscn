@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dp2lpufyjlyyl"]
+[gd_scene load_steps=18 format=4 uid="uid://dp2lpufyjlyyl"]
 
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_gclwq"]
 [ext_resource type="Script" uid="uid://cw5fy036i1mo5" path="res://01_tutorial/Tutorial.gd" id="1_txqus"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bioh2okntlm10" path="res://Sprites/Environment/Tiled_files/decorative_cracks_floor.png" id="3_i7ow6"]
 [ext_resource type="Texture2D" uid="uid://cx7r52k7pya5d" path="res://Sprites/Environment/Tiled_files/decorative_cracks_coasts_animation.png" id="4_vby32"]
 [ext_resource type="Texture2D" uid="uid://c5ebvvn2cl77p" path="res://Sprites/Environment/decorative_cracks_floor_edit.png" id="5_hpwjc"]
-[ext_resource type="PackedScene" uid="uid://283kx4xgk20v" path="res://Enemy.tscn" id="5_vby32"]
 [ext_resource type="Texture2D" uid="uid://wiwb0wc0hxdn" path="res://Sprites/Environment/floor colors.png" id="7_nxr7p"]
 [ext_resource type="PackedScene" uid="uid://bom08scktjla7" path="res://Trap.tscn" id="7_r2yp7"]
+[ext_resource type="PackedScene" uid="uid://1cwtjkbpb60g" path="res://04_room_n2/Archer.tscn" id="10_7oio0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2yp7"]
 texture = ExtResource("2_y2r7i")
@@ -1001,44 +1001,6 @@ sources/1 = SubResource("TileSetAtlasSource_nxr7p")
 sources/2 = SubResource("TileSetAtlasSource_7oio0")
 sources/7 = SubResource("TileSetAtlasSource_khpf4")
 
-[sub_resource type="Animation" id="Animation_hpwjc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-93, -183)]
-}
-
-[sub_resource type="Animation" id="Animation_vby32"]
-resource_name = "new_animation"
-length = 8.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2.00245, 3.00116, 4.0049),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-167, -183), Vector2(-81, -185), Vector2(-14, -184), Vector2(83, -185), Vector2(168, -183)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r2yp7"]
-_data = {
-&"RESET": SubResource("Animation_hpwjc"),
-&"new_animation": SubResource("Animation_vby32")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2yp7"]
 size = Vector2(192, 20)
 
@@ -1050,7 +1012,6 @@ metadata/_edit_lock_ = true
 position = Vector2(1, 788)
 
 [node name="Camera2D" type="Camera2D" parent="MainPlayer"]
-zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -1075,16 +1036,6 @@ tile_set = SubResource("TileSet_txqus")
 collision_enabled = false
 navigation_visibility_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("5_vby32")]
-position = Vector2(-93, -183)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D2"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_r2yp7")
-}
-speed_scale = 1.3
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -1146,3 +1097,6 @@ position = Vector2(-96, -1056)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(96, 10)
 shape = SubResource("RectangleShape2D_r2yp7")
+
+[node name="Archer" parent="." instance=ExtResource("10_7oio0")]
+position = Vector2(1, -621)
