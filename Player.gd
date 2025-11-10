@@ -72,13 +72,13 @@ func get_8way_input():
 func animate():
 	
 	if velocity.x > 0:
-		sprite.play("right")
+		sprite.play("right_robe")
 	elif velocity.x < 0:
-		sprite.play("left")
+		sprite.play("left_robe")
 	elif velocity.y > 0:
-		sprite.play("down")
+		sprite.play("down_robe")
 	elif velocity.y < 0:
-		sprite.play("up")
+		sprite.play("up_robe")
 	else:
 		sprite.stop()
 		
