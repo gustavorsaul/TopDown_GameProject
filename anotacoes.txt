@@ -73,3 +73,13 @@ Falta de formas de recuperar vida.
 
 
 adicionar +1 arqueiro no tutorial, ficando no total 2 e linkando eles com a porta
+
+mudar sprite do arqueiro
+
+obrigar a matar todos os arqueiros na sala 2
+
+corrigir layers
+
+mudar estilo de traps
+
+ajustar colisão da flecha
