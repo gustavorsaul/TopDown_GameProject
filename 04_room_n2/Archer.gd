@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var arrow_scene: PackedScene = preload("res://04_room_n2/Flecha.tscn")
 @export var shoot_interval: float = 1.5
-@export var vision_range: float = 1000.0  # Alcance máximo de visão do arqueiro
+@export var vision_range: float = 800.0  # Alcance máximo de visão do arqueiro
 
 @onready var sprite = $AnimatedSprite2D
 @onready var life_bar = $LifeBar
@@ -58,31 +58,21 @@ func _ready() -> void:
 		print("ERRO: Player não encontrado! Certifique-se de que o player está na cena e no grupo 'player'")
 
 func _process(delta: float) -> void:
-	# Verificar se o player está na cena
 	if player and not is_shooting:
-		# Atualizar a direção do raycast para apontar para o player
-		# Tenta mirar no AimPoint do player
 		var target_node = player.get_node_or_null("AimPoint")
 		var target_position = target_node.global_position if target_node else player.global_position
-
 		var direction_to_player = (target_position - global_position).normalized()
-		ray_cast.target_position = direction_to_player * vision_range
-
-		
-		# Verificar se o player está dentro do alcance e visível
 		var distance_to_player = global_position.distance_to(player.global_position)
-		if distance_to_player <= vision_range:
-			ray_cast.force_raycast_update()
-			if ray_cast.is_colliding():
-				var collider = ray_cast.get_collider()
-				if collider == player:
-					# Player está visível, virar para a direção dele
-					if direction_to_player.x > 0:
-						if not sprite.animation.begins_with("right") and not is_shooting:
-							sprite.play("right")
-					else:
-						if not sprite.animation.begins_with("left") and not is_shooting:
-							sprite.play("left")
+		# Apenas distância para visão (temporário até configurar RayCast corretamente)
+		var visible = distance_to_player <= vision_range
+		if visible:
+			if direction_to_player.x > 0:
+				if not sprite.animation.begins_with("right") and not is_shooting:
+					sprite.play("right")
+			else:
+				if not sprite.animation.begins_with("left") and not is_shooting:
+					sprite.play("left")
+		# print("[Archer] dist=", distance_to_player, " vis=", visible)
 
 func _on_animation_finished() -> void:
 	if sprite.animation.ends_with("shooting"):
@@ -95,33 +85,18 @@ func _on_animation_finished() -> void:
 
 func _on_shoot_timer_timeout() -> void:
 	if can_shoot and not is_shooting and player:
-		# Verificar se o player está no alcance e visível
-		
-		# Tenta mirar no AimPoint do player
 		var target_node = player.get_node_or_null("AimPoint")
 		var target_position = target_node.global_position if target_node else player.global_position
-
 		var direction_to_player = (target_position - global_position).normalized()
-		ray_cast.target_position = direction_to_player * vision_range
-
-		
-		ray_cast.force_raycast_update()
-		
 		var distance_to_player = global_position.distance_to(player.global_position)
-		if distance_to_player <= vision_range and ray_cast.is_colliding():
-			var collider = ray_cast.get_collider()
-			if collider == player:
-				is_shooting = true
-				
-				# Virar para a direção do player
-				if direction_to_player.x > 0:
-					sprite.play("right_shooting")
-				else:
-					sprite.play("left_shooting")
-				
-				# Esperar um pouco para disparar a flecha
-				await get_tree().create_timer(0.3).timeout
-				_shoot_arrow(direction_to_player)
+		if distance_to_player <= vision_range:
+			is_shooting = true
+			if direction_to_player.x > 0:
+				sprite.play("right_shooting")
+			else:
+				sprite.play("left_shooting")
+			await get_tree().create_timer(0.5).timeout
+			_shoot_arrow(direction_to_player)
 
 func _shoot_arrow(direction = null) -> void:
 	if not arrow_scene:

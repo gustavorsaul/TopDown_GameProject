@@ -83,3 +83,15 @@ corrigir layers
 mudar estilo de traps
 
 ajustar colisão da flecha
+
+
+
+	para o playtest:
+
+		implementar todas as Portas
+		animação de morte se conseguir
+		melhorar textura de arqueiro
+		melhorar sala n1
+		começar a implementar hud
+		melhorar visual do jogo no geral
+		

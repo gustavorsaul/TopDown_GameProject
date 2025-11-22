@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvpvxcaiacbr4"]
+
+[ext_resource type="Script" uid="uid://cmarfrcje8a2x" path="res://WoodDoor.gd" id="1_q337g"]
+[ext_resource type="Texture2D" uid="uid://b5ii8nkwxgitf" path="res://Sprites/Environment/DoorAnimation/doors_lever_chest_animation.png" id="1_tubc3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q337g"]
+atlas = ExtResource("1_tubc3")
+region = Rect2(32, 208, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2khr1"]
+atlas = ExtResource("1_tubc3")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2yrr"]
+atlas = ExtResource("1_tubc3")
+region = Rect2(32, 112, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fmg6"]
+atlas = ExtResource("1_tubc3")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd58e"]
+atlas = ExtResource("1_tubc3")
+region = Rect2(32, 16, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3s4pg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q337g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2khr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2yrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fmg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd58e")
+}],
+"loop": false,
+"name": &"closing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd58e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fmg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2yrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2khr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q337g")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xaln"]
+size = Vector2(33, 32)
+
+[node name="WoodDoor" type="Node2D"]
+script = ExtResource("1_q337g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, 0)
+scale = Vector2(1.03125, 1)
+sprite_frames = SubResource("SpriteFrames_3s4pg")
+animation = &"opening"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6xaln")

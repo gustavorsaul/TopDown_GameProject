@@ -48,6 +48,10 @@ func _ready():
 	add_child(shoot_timer)
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 
+	# Conecta o sinal de colisão da Area2D para detectar flechas
+	var area2d = $Area2D
+	if area2d:
+		area2d.connect("area_entered", Callable(self, "_on_arrow_area_entered"))
 	
 	# Atualiza a barra de vida com o valor atual do GlobalVars
 	await get_tree().process_frame
@@ -220,5 +224,12 @@ func _create_dash_trail() -> void:
 			trail_sprite.queue_free()
 		dash_trails.erase(trail_sprite)
 	)
-	
+
+func _on_arrow_area_entered(area: Area2D) -> void:
+	# Verifica se a área que entrou é uma flecha
+	if area.name == "Flecha" or area.is_in_group("arrow") or area.get_script() and area.get_script().resource_path.contains("Flecha"):
+		print("Player detectou colisão com flecha!")
+		take_damage(1)
+		# Destrói a flecha
+		area.queue_free()
 	

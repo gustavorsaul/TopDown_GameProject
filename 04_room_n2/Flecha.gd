@@ -6,6 +6,9 @@ var lifetime: float = 5.0  # Tempo de vida da flecha em segundos
 var archer_parent = null  # Referência ao arqueiro que disparou esta flecha
 
 func _ready() -> void:
+	# Adiciona ao grupo "arrow" para facilitar detecção
+	add_to_group("arrow")
+	
 	$AnimatedSprite2D.play()
 	
 	# Conectar sinal de colisão
