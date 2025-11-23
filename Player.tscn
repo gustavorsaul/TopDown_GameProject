@@ -1,12 +1,18 @@
-[gd_scene load_steps=71 format=3 uid="uid://c1bei8kfqpste"]
+[gd_scene load_steps=83 format=3 uid="uid://c1bei8kfqpste"]
 
 [ext_resource type="Script" uid="uid://d3ycwowkp4cub" path="res://Player.gd" id="1_kne1u"]
 [ext_resource type="Texture2D" uid="uid://dg7id5slhreqo" path="res://Sprites/Player/Character_Idle.png" id="1_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://15nvswiftxop" path="res://Arrow.tscn" id="2_e80uo"]
 [ext_resource type="Texture2D" uid="uid://cb0ouwma0wg5f" path="res://Sprites/Player/Character_Walk.png" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://dtv8xoenkkjvo" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-43.png" id="3_itxgx"]
+[ext_resource type="Texture2D" uid="uid://bbh8mmxegvk74" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-44.png" id="4_cgsek"]
+[ext_resource type="Texture2D" uid="uid://deag4np4trpfp" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-45.png" id="5_0pi4m"]
 [ext_resource type="Texture2D" uid="uid://u64w030s2jwf" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-15.png" id="5_oudfo"]
 [ext_resource type="Texture2D" uid="uid://8oxhaeflvj5d" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-16.png" id="6_d6rpx"]
+[ext_resource type="Texture2D" uid="uid://d5otuhqqmvuh" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-46.png" id="6_sg6sq"]
+[ext_resource type="Texture2D" uid="uid://bwu0fcpto1bvf" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-47.png" id="7_h84ma"]
 [ext_resource type="Texture2D" uid="uid://e6uu6dpx01a1" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-17.png" id="7_r3kul"]
+[ext_resource type="Texture2D" uid="uid://buvjvgjx18o67" path="res://Sprites/Player/Joao/Death/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-48.png" id="8_47wu6"]
 [ext_resource type="Texture2D" uid="uid://bxruxwovtg418" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-18.png" id="8_jatw7"]
 [ext_resource type="Texture2D" uid="uid://bnnbll7br21pk" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-19.png" id="9_rv870"]
 [ext_resource type="Texture2D" uid="uid://c2i542y7du76r" path="res://Sprites/Player/Joao/Move/6ededa84e25b41639a8e548b8eb12b33PxqBqNlKdJoSoW8i-20.png" id="10_efikj"]
@@ -16,6 +22,30 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
 size = Vector2(21, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffn1m"]
+atlas = ExtResource("3_itxgx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mft6i"]
+atlas = ExtResource("4_cgsek")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctv73"]
+atlas = ExtResource("5_0pi4m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ofp1"]
+atlas = ExtResource("6_sg6sq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh7e4"]
+atlas = ExtResource("7_h84ma")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbi5o"]
+atlas = ExtResource("8_47wu6")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv870"]
 atlas = ExtResource("1_kpjcp")
@@ -237,6 +267,29 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ffn1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mft6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctv73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ofp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh7e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbi5o")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rv870")
 }, {
 "duration": 1.0,
@@ -454,10 +507,11 @@ texture_filter = 1
 position = Vector2(-7.10543e-15, -7)
 scale = Vector2(1.2, 1.162)
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"right_robe"
+animation = &"death"
 speed_scale = 2.0
 
 [node name="LifeBar" type="ProgressBar" parent="."]
+visible = false
 modulate = Color(0.0500001, 1, 0, 1)
 texture_filter = 1
 offset_left = -20.0

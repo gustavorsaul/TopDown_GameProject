@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var life_bar = $LifeBar
 
-
 @export var arrow : PackedScene
 
 @onready var tiros = 0
@@ -23,7 +22,6 @@ var dash_start_position = Vector2.ZERO
 var can_shoot = true
 @onready var shoot_timer: Timer
 
-
 # Sistema de invencibilidade para evitar dano múltiplo
 var is_invincible = false
 @export var invincibility_duration = 1  # duração da invencibilidade em segundos
@@ -32,49 +30,52 @@ var is_invincible = false
 var dash_trails = []
 @export var trail_count = 3  # número de rastros
 
+signal player_died(respawn_path: String)
+
 func _ready():
-	# Adiciona o player ao grupo "player" para detecção pelas traps
 	add_to_group("player")
-	# Configura o timer do dash
+	
+	# Configura timer do dash (Duração do movimento)
 	dash_timer = Timer.new()
 	dash_timer.one_shot = true
 	dash_timer.wait_time = dash_duration
 	add_child(dash_timer)
 	dash_timer.timeout.connect(stop_dashing)
 	
+	# Configura timer de tiro
 	shoot_timer = Timer.new()
 	shoot_timer.one_shot = true
 	shoot_timer.wait_time = shoot_cooldown
 	add_child(shoot_timer)
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 
-	# Conecta o sinal de colisão da Area2D para detectar flechas
-	var area2d = $Area2D
+	# Conecta colisão de flechas
+	var area2d = get_node_or_null("Area2D")
 	if area2d:
-		area2d.connect("area_entered", Callable(self, "_on_arrow_area_entered"))
+		if not area2d.is_connected("area_entered", Callable(self, "_on_arrow_area_entered")):
+			area2d.connect("area_entered", Callable(self, "_on_arrow_area_entered"))
 	
-	# Atualiza a barra de vida com o valor atual do GlobalVars
+	# Atualiza a barra de vida local (se existir)
 	await get_tree().process_frame
 	_update_life_label()
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
 
-
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	
-	# Verificar se shift foi pressionado para dash
-	if Input.is_action_just_pressed("shift") and input_direction != Vector2.ZERO and GlobalVars.dash_number > 0:
-		GlobalVars.dash_number -= 1
-		start_dash(input_direction)
+	# --- ALTERAÇÃO PRINCIPAL DO DASH ---
+	# Usa a função use_dash() que retorna true se gastou a stamina e iniciou o timer
+	if Input.is_action_just_pressed("shift") and input_direction != Vector2.ZERO:
+		if GlobalVars.use_dash(): 
+			start_dash(input_direction)
 	
 	# Se não estiver fazendo dash, movimento normal
 	if not is_dashing:
 		velocity = input_direction * speed
 	
 func animate():
-	
 	if velocity.x > 0:
 		sprite.play("right_robe")
 	elif velocity.x < 0:
@@ -92,29 +93,22 @@ func start_dash(direction: Vector2):
 		dash_direction = direction
 		dash_start_position = position
 		velocity = dash_direction * dash_speed
-		print("Dash!")
-		# Inicia o timer para encerrar o dash
+		
+		# Inicia o timer para encerrar o movimento do dash
 		dash_timer.stop()
 		dash_timer.wait_time = dash_duration
 		dash_timer.start()
 
 func update_dash(delta):
 	if is_dashing:
-		# Usar velocity para respeitar colisões
 		velocity = dash_direction * dash_speed
-		
-		# Criar rastro visual durante o dash
 		_create_dash_trail()
-		
 
 func move_8way(delta):
 	get_8way_input()
 	update_dash(delta)
 	animate()
-	
-	# Mover e verificar colisões
 	move_and_slide()
-	
 
 func _physics_process(delta):
 	move_8way(delta)
@@ -126,57 +120,63 @@ func shoot() -> void:
 	can_shoot = false
 	shoot_timer.start()
 	tiros += 1
-	print("Tiro ", tiros)
 	var b := arrow.instantiate()
 	b.position = position
 	b.setup_arrow(get_global_mouse_position())
 	owner.add_child(b)
-
 
 func stop_dashing() -> void:
 	is_dashing = false
 	velocity = Vector2.ZERO
 
 func take_damage(amount: int) -> void:
-	
-	# Verifica se o player está invencível
 	if is_invincible:
-		print("Player está invencível, dano ignorado!")
 		return
 	
-	# Aplica o dano usando o GlobalVars
-	GlobalVars.reduce_player_life(amount)
+	# Aplica o dano no GlobalVars
+	var current_hp = GlobalVars.reduce_player_life(amount)
+	
+	# Atualiza visual local (barra em cima da cabeça, se tiver)
 	_update_life_label()
+	
+	# Ativa invencibilidade
 	_start_invincibility()
-	print("Verificando vida")
 
-	print("Vidas:", GlobalVars.player_lives)
-	print("Tentativas:", GlobalVars.player_attempts)
-
-	if GlobalVars.get_player_lives() <= 0:
-		print("morreu")
-		die()  # animação, etc.
-		GlobalVars.handle_attempt_reset()
-
+	# Verifica Morte
+	if current_hp <= 0:
+		print("Player morreu (HP <= 0)")
 		
-signal player_died(respawn_path: String)
+		# Primeiro atualiza as stats globais (incrementa tentativa, reseta HP para 3)
+		GlobalVars.handle_attempt_reset()
+		
+		# Depois inicia o processo de troca de cena
+		die()
 
 func die() -> void:
-	print("Player morreu! Iniciando respawn...")
-
-	# Limpa efeitos visuais
+	print("Iniciando respawn...")
+	
+	# 1. Impede que o código de movimento (_physics_process) continue rodando
+	set_physics_process(false)
+	velocity = Vector2.ZERO # Para o personagem imediatamente se estiver deslizando
+	
 	_clear_all_trails()
 	
-	# Obtém o caminho da cena de respawn
+	modulate.a = 1.0
+	
+	# 2. Toca a animação
+	sprite.play("death")
+	
+	# 3. PAUSA: Espera 1.0 segundo (ajuste esse valor conforme a duração da sua animação)
+	await get_tree().create_timer(1.0).timeout
+	
+	# 4. Continua o processo de troca de cena
 	var respawn_scene = GlobalVars.get_respawn_scene()
 	GlobalVars.next_respawn_position = Vector2.ZERO
-	print("Emitindo sinal para respawn na cena:", respawn_scene)
-
-	# Em vez de trocar a cena diretamente:
+	
+	# Emite o sinal para o Main.gd trocar a cena
 	emit_signal("player_died", respawn_scene)
 
 func _clear_all_trails() -> void:
-	# Remove todos os rastros ativos
 	for trail in dash_trails:
 		if is_instance_valid(trail):
 			trail.queue_free()
@@ -188,37 +188,30 @@ func _update_life_label() -> void:
 
 func _start_invincibility() -> void:
 	is_invincible = true
-	print("Invencibilidade ativada por ", invincibility_duration, " segundos")
-	
-	# Timer para remover a invencibilidade
+	# Piscar o sprite para indicar dano (Opcional, mas visualmente bom)
+	modulate.a = 0.8 
 	get_tree().create_timer(invincibility_duration).timeout.connect(_end_invincibility)
 
 func _end_invincibility() -> void:
 	is_invincible = false
-	print("Invencibilidade desativada")
+	modulate.a = 1.0 # Volta opacidade ao normal
 
 func _create_dash_trail() -> void:
-	# Criar um sprite simples de rastro
 	var trail_sprite = Sprite2D.new()
 	trail_sprite.texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
 	trail_sprite.position = position
-	trail_sprite.scale = sprite.scale * 0.9  # Quase do tamanho original
+	trail_sprite.scale = sprite.scale * 0.9
 	trail_sprite.modulate = Color.WHITE
-	trail_sprite.modulate.a = 0.6  # Menos transparente
+	trail_sprite.modulate.a = 0.6
 	
-	# Adicionar ao mundo
 	get_parent().add_child(trail_sprite)
-	
-	# Adicionar à lista
 	dash_trails.append(trail_sprite)
 	
-	# Limitar número de rastros
 	if dash_trails.size() > trail_count:
 		var old_trail = dash_trails.pop_front()
 		if is_instance_valid(old_trail):
 			old_trail.queue_free()
 	
-	# Remover após um tempo mais rápido
 	get_tree().create_timer(0.15).timeout.connect(func(): 
 		if is_instance_valid(trail_sprite):
 			trail_sprite.queue_free()
@@ -226,10 +219,6 @@ func _create_dash_trail() -> void:
 	)
 
 func _on_arrow_area_entered(area: Area2D) -> void:
-	# Verifica se a área que entrou é uma flecha
-	if area.name == "Flecha" or area.is_in_group("arrow") or area.get_script() and area.get_script().resource_path.contains("Flecha"):
-		print("Player detectou colisão com flecha!")
+	if area.name == "Flecha" or area.is_in_group("arrow") or (area.get_script() and area.get_script().resource_path.contains("Flecha")):
 		take_damage(1)
-		# Destrói a flecha
 		area.queue_free()
-	

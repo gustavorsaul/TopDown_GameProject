@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://tsfb1nbq2iv5"]
+[gd_scene load_steps=8 format=3 uid="uid://tsfb1nbq2iv5"]
 
 [ext_resource type="Script" uid="uid://cy72x4dshvbi2" path="res://00_main/Main.gd" id="1_51a2b"]
 [ext_resource type="PackedScene" uid="uid://dp2lpufyjlyyl" path="res://01_tutorial/Tutorial.tscn" id="2_utqqy"]
+[ext_resource type="Texture2D" uid="uid://dd8akm0altc06" path="res://Sprites/Hud/healthbar_background.png" id="3_fm26s"]
+[ext_resource type="Texture2D" uid="uid://btdygikd88jk8" path="res://Sprites/Hud/healthbar_fill.png" id="4_hka2u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_51a2b"]
 font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_utqqy"]
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_esoif"]
+font_size = 30
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_51a2b")
@@ -17,24 +22,114 @@ script = ExtResource("1_51a2b")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Tentativas" type="Label" parent="HUD"]
-offset_right = 132.0
-offset_bottom = 35.0
+visible = false
+offset_left = 514.0
+offset_top = 11.0
+offset_right = 646.0
+offset_bottom = 46.0
 text = "Tentativas:"
 label_settings = SubResource("LabelSettings_51a2b")
 metadata/_edit_use_anchors_ = true
 
 [node name="Vida" type="Label" parent="HUD"]
-offset_top = 34.0
-offset_right = 59.0
-offset_bottom = 69.0
+visible = false
+offset_left = 517.0
+offset_top = 62.0
+offset_right = 576.0
+offset_bottom = 97.0
 text = "Vida:"
 label_settings = SubResource("LabelSettings_utqqy")
 metadata/_edit_use_anchors_ = true
 
 [node name="DashCount" type="Label" parent="HUD"]
-offset_top = 71.0
-offset_right = 132.0
-offset_bottom = 106.0
+visible = false
+offset_left = 520.0
+offset_top = 120.0
+offset_right = 652.0
+offset_bottom = 155.0
 text = "Tentativas:"
 label_settings = SubResource("LabelSettings_51a2b")
 metadata/_edit_use_anchors_ = true
+
+[node name="HP_Count" type="HBoxContainer" parent="HUD"]
+offset_left = 23.0
+offset_top = 32.0
+offset_right = 481.0
+offset_bottom = 85.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="HUD/HP_Count"]
+texture_filter = 1
+layout_mode = 2
+text = "HP"
+label_settings = SubResource("LabelSettings_esoif")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/HP_Count"]
+layout_mode = 2
+texture = ExtResource("3_fm26s")
+expand_mode = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/HP_Count/TextureRect"]
+modulate = Color(0.0806667, 0.44, 0, 1)
+layout_mode = 0
+offset_right = 397.0
+offset_bottom = 58.0
+max_value = 3.0
+step = 0.0
+value = 3.0
+texture_progress = ExtResource("4_hka2u")
+
+[node name="Lives_Count" type="HBoxContainer" parent="HUD"]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 482.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="HUD/Lives_Count"]
+texture_filter = 1
+layout_mode = 2
+text = "LIVES"
+label_settings = SubResource("LabelSettings_esoif")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Lives_Count"]
+layout_mode = 2
+texture = ExtResource("3_fm26s")
+expand_mode = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Lives_Count/TextureRect"]
+modulate = Color(0.73, 0, 0, 1)
+layout_mode = 0
+offset_right = 397.0
+offset_bottom = 58.0
+max_value = 3.0
+value = 3.0
+texture_progress = ExtResource("4_hka2u")
+
+[node name="Dash_Count" type="HBoxContainer" parent="HUD"]
+offset_left = 3.0
+offset_top = 60.0
+offset_right = 484.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="HUD/Dash_Count"]
+texture_filter = 1
+layout_mode = 2
+text = "DASH"
+label_settings = SubResource("LabelSettings_esoif")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Dash_Count"]
+layout_mode = 2
+texture = ExtResource("3_fm26s")
+expand_mode = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Dash_Count/TextureRect"]
+modulate = Color(0.83, 0.747, 0, 1)
+layout_mode = 0
+offset_right = 397.0
+offset_bottom = 58.0
+max_value = 2.0
+step = 0.0
+value = 2.0
+texture_progress = ExtResource("4_hka2u")
