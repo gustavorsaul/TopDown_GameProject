@@ -118,6 +118,7 @@ func handle_attempt_reset():
 		print("[GlobalVars] Vidas resetadas para 3.")
 
 func _change_to_game_over():
+	await get_tree().create_timer(1.3).timeout
 	get_tree().change_scene_to_file("res://00_main/GameOver.tscn")
 
 func reset_game_completely():

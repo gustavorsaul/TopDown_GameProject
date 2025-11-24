@@ -9,8 +9,9 @@
 texture = ExtResource("2_v2iwm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2iwm"]
+line_spacing = -3.0
 font = ExtResource("4_t80jn")
-font_size = 80
+font_size = 100
 font_color = Color(0.44, 0.260333, 0.132, 1)
 outline_size = 5
 outline_color = Color(0.56, 0.56, 0.56, 1)
@@ -38,6 +39,7 @@ grow_vertical = 2
 script = ExtResource("1_a350c")
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color(0.7, 0.7, 0.7, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,12 +54,12 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -377.0
-offset_top = 45.0
+offset_top = 5.0
 offset_right = 377.0
-offset_bottom = 236.0
+offset_bottom = 288.0
 grow_horizontal = 2
-text = "THE      FORGOTTEN 
-PRISONER"
+text = "The      Forgotten 
+Prisoner"
 label_settings = SubResource("LabelSettings_v2iwm")
 horizontal_alignment = 1
 vertical_alignment = 1
