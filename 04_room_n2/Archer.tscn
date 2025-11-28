@@ -243,3 +243,7 @@ offset_bottom = -30.0
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.333333, -4.66667)
+scale = Vector2(1.1, 1.66667)

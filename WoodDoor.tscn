@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvpvxcaiacbr4"]
+[gd_scene load_steps=11 format=3 uid="uid://bvpvxcaiacbr4"]
 
 [ext_resource type="Script" uid="uid://cmarfrcje8a2x" path="res://WoodDoor.gd" id="1_q337g"]
 [ext_resource type="Texture2D" uid="uid://b5ii8nkwxgitf" path="res://Sprites/Environment/DoorAnimation/doors_lever_chest_animation.png" id="1_tubc3"]
@@ -69,6 +69,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xaln"]
 size = Vector2(33, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q337g"]
+size = Vector2(7, 31)
+
 [node name="WoodDoor" type="Node2D"]
 script = ExtResource("1_q337g")
 
@@ -84,3 +87,13 @@ animation = &"opening"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_6xaln")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-12.5, -1.5)
+shape = SubResource("RectangleShape2D_q337g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(14.5, -1.5)
+shape = SubResource("RectangleShape2D_q337g")

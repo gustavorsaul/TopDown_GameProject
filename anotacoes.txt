@@ -92,3 +92,4 @@ ajustar colisão da flecha
 		melhorar sala n1
 		melhorar visual do jogo no geral
 		
+		os screen enable arqueiros

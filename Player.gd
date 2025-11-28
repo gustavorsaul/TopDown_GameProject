@@ -189,7 +189,7 @@ func _update_life_label() -> void:
 func _start_invincibility() -> void:
 	is_invincible = true
 	# Piscar o sprite para indicar dano (Opcional, mas visualmente bom)
-	modulate.a = 0.8 
+	modulate.a = 0.6
 	get_tree().create_timer(invincibility_duration).timeout.connect(_end_invincibility)
 
 func _end_invincibility() -> void:

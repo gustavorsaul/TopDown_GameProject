@@ -5,7 +5,14 @@ extends Node2D
 # Se manteve Area2D, mude "StaticBody2D" para "Area2D" abaixo
 @onready var col := $StaticBody2D/CollisionShape2D 
 
+@onready var col1 = $StaticBody2D2/CollisionShape2D
+@onready var col2 = $StaticBody2D2/CollisionShape2D2
+
 var is_open := false
+
+func _ready():
+	col1.disabled = false
+	col2.disabled = false
 
 func open_door():
 	if not is_open:

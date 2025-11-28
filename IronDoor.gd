@@ -5,18 +5,25 @@ extends Node2D
 # Se manteve Area2D, mude "StaticBody2D" para "Area2D" abaixo
 @onready var col := $StaticBody2D/CollisionShape2D 
 
+@onready var col1 = $StaticBody2D2/CollisionShape2D
+@onready var col2 = $StaticBody2D2/CollisionShape2D2
+
 var is_open := false
+
+func _ready():
+	col1.disabled = false
+	col2.disabled = false
 
 func open_door():
 	if not is_open:
-		anim.play("opening")
+		anim.play("opening_no_shadow")
 		# "set_deferred" é OBRIGATÓRIO para evitar erros de física ao alterar colisões em tempo real
 		col.set_deferred("disabled", true)
 		is_open = true
-
+		
 func close_door():
 	if is_open:
-		anim.play("closing")
+		anim.play("closing_no_shadow")
 		# Reativa a colisão de forma segura
 		col.set_deferred("disabled", false)
 		is_open = false

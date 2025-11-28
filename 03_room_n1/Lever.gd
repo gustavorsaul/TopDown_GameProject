@@ -5,6 +5,8 @@ signal lever_activated(room_id: String)
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area: Area2D = $Area2D
 
+@onready var button: Sprite2D = $Sprite2D
+
 # Define em qual sala a alavanca está (editável no editor)
 @export var room_id: String = "room_n1"
 
@@ -24,10 +26,13 @@ func _on_body_entered(body: Node) -> void:
 	if body.name == "MainPlayer":
 		can_interact = true
 		print("Player pode interagir com a alavanca da", room_id)
+		button.visible = true
+		
 
 func _on_body_exited(body: Node) -> void:
 	if body.name == "MainPlayer":
 		can_interact = false
+		button.visible = false
 
 func activate_lever():
 	activated = true

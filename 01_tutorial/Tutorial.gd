@@ -49,9 +49,6 @@ func _on_archer_died() -> void:
 
 func _open_door_now() -> void:
 	if door:
-		# AQUI ESTÁ A CORREÇÃO:
-		# Apenas chamamos open_door(). O script da porta (WoodDoor.gd)
-		# que corrigimos antes cuidará da animação e do set_deferred na colisão.
 		door.open_door()
 		print("Porta do tutorial liberada.")
 

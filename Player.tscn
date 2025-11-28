@@ -286,7 +286,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -507,7 +507,7 @@ texture_filter = 1
 position = Vector2(-7.10543e-15, -7)
 scale = Vector2(1.2, 1.162)
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"death"
+animation = &"down_robe"
 speed_scale = 2.0
 
 [node name="LifeBar" type="ProgressBar" parent="."]

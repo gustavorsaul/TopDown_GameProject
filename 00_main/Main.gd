@@ -11,6 +11,10 @@ var current_scene : Node2D = null
 # DASH (Stamina do dash)
 @onready var bar_dash := $HUD/Dash_Count/TextureRect/TextureProgressBar
 
+@onready var heart1 := $HUD/Lives_Count/Heart1
+@onready var heart2 := $HUD/Lives_Count/Heart2
+@onready var heart3 := $HUD/Lives_Count/Heart3
+
 func _ready() -> void:
 	# --- CONFIGURAÇÃO INICIAL DAS BARRAS ---
 	
@@ -28,6 +32,7 @@ func _ready() -> void:
 	# HP: Configura a vida dentro da fase
 	if bar_hp:
 		bar_hp.max_value = 3 # Exemplo
+	
 	
 	# --- LÓGICA DE INICIALIZAÇÃO DA CENA ---
 	current_scene = get_node_or_null("Tutorial")
@@ -50,6 +55,8 @@ func _physics_process(delta: float) -> void:
 
 	# Mantém a HUD atualizada a cada frame
 	update_hud_visuals()
+	
+	
 
 # --- ATUALIZAÇÃO DA HUD ---
 func update_hud_visuals() -> void:
@@ -71,6 +78,26 @@ func update_hud_visuals() -> void:
 	# 3. ATUALIZA HP (Barra Verde)
 	if bar_hp:
 		bar_hp.value = GlobalVars.get_player_lives()
+
+	if GlobalVars.player_attempts == 1:
+		heart1.visible = true
+		heart2.visible = true
+		heart3.visible = true
+		
+	if GlobalVars.player_attempts == 2:
+		heart1.visible = true
+		heart2.visible = true
+		heart3.visible = false
+	
+	if GlobalVars.player_attempts == 3:
+		heart1.visible = true
+		heart2.visible = false
+		heart3.visible = false
+	
+	if GlobalVars.player_attempts == 4:
+		heart1.visible = false
+		heart2.visible = false
+		heart3.visible = false
 
 # --- Funções auxiliares (Sinais e Transição) ---
 

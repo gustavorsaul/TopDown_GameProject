@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://doyob6jir7ytw"]
+[gd_scene load_steps=11 format=3 uid="uid://doyob6jir7ytw"]
 
 [ext_resource type="Script" uid="uid://hum1xjp6ce4d" path="res://03_room_n1/Lever.gd" id="1_lofyu"]
 [ext_resource type="Texture2D" uid="uid://c2wyu4fxip4a6" path="res://Sprites/Environment/doors_lever_chest_animation.png" id="2_ytvyy"]
+[ext_resource type="Texture2D" uid="uid://dfed06dgsdqos" path="res://Sprites/keyboard_key_f__1_-removebg-preview.png" id="3_ytvyy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o44bc"]
 atlas = ExtResource("2_ytvyy")
@@ -63,3 +64,9 @@ animation = &"activate"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_lofyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(39, -96)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_ytvyy")
