@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjetoJogo"
-run/main_scene="uid://8f81dghtdxqr"
+run/main_scene="uid://c847k6mlmtip"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]

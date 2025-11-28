@@ -4,7 +4,14 @@ signal level_finished(next_scene_path: String)
 @onready var lever := get_node_or_null("Lever")
 @onready var return_home := get_node_or_null("ReturnHome")
 
+@onready var door := $WoodDoor
+
 func _ready():
+	
+	if door:
+		door.open_door()
+		door.close_door()
+	
 	if lever:
 		lever.connect("lever_activated", Callable(self, "_on_lever_activated"))
 	if return_home:
@@ -13,6 +20,7 @@ func _ready():
 
 func _on_lever_activated(room_id: String):
 	print("Alavanca da", room_id, "ativada → liberando retorno.")
+	door.open_door()
 	if return_home:
 		return_home.set_deferred("monitoring", true)
 
