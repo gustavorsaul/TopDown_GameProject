@@ -73,21 +73,22 @@ func _update_lockers_state() -> void:
 func _update_doors_state() -> void:
 	if door1:
 		if GlobalVars.room_n1_part2:
+			door1.open_door()
 			door1.close_door()
 		else:
 			door1.open_door()
 
 	if door2:
 		if GlobalVars.room_n2_part2:
+			door2.open_door()
 			door2.close_door()
 		else:
 			door2.open_door()
 
 # --- Lógica da Porta de Ferro e Final --- #
 func _check_final_area_activation() -> void:
-	var all_lockers_open = GlobalVars.locker1_open and GlobalVars.locker2_open
 	
-	if all_lockers_open:
+	if GlobalVars.locker1_open and GlobalVars.locker2_open:
 		# --- CAMINHO LIBERADO ---
 		print("Todas as condições atendidas. Abrindo final.")
 		

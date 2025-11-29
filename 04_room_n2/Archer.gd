@@ -99,6 +99,7 @@ func _on_shoot_timer_timeout() -> void:
 			_shoot_arrow(direction_to_player)
 
 func _shoot_arrow(direction = null) -> void:
+	
 	if not arrow_scene:
 		print("ERRO: Cena da flecha não configurada!")
 		return

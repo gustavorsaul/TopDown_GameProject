@@ -125,7 +125,23 @@ func reset_game_completely():
 	player_lives = MAX_LIVES
 	player_attempts = 1
 	dash_number = DASH_MAX_LIMIT
-	# Opcional: Resetar progresso das salas aqui se desejar
+
+	# Reset total do progresso
+	room_n1_part1 = false
+	room_n2_part1 = false
+	room_n1_part2 = false
+	room_n2_part2 = false
+
+	# Reset dos lockers
+	locker1_open = false
+	locker2_open = false
+
+	# Reset do tutorial
+	tutorial_completed = false
+
+	# Reset do respawn e sala atual (IMPORTANTE!)
+	current_room = ""
+	next_respawn_position = Vector2.ZERO
 
 func reset_player_stats():
 	# Mantido para compatibilidade se você usa em outro lugar

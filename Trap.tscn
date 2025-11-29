@@ -33,6 +33,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6qwrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd23t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf7rp")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_sv138")
 }],
 "loop": true,
 "name": &"one",
@@ -51,7 +60,6 @@ position = Vector2(13, 20)
 scale = Vector2(2, 1.688)
 sprite_frames = SubResource("SpriteFrames_j3qia")
 animation = &"one"
-frame_progress = 0.349862
 
 [node name="Area2D" type="Area2D" parent="."]
 

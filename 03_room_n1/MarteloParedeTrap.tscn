@@ -110,7 +110,6 @@ script = ExtResource("1_i7ps8")
 texture_filter = 1
 scale = Vector2(3, 2.181)
 sprite_frames = SubResource("SpriteFrames_05nc3")
-frame_progress = 0.569383
 script = SubResource("GDScript_xswgy")
 
 [node name="Area2D" type="Area2D" parent="."]
