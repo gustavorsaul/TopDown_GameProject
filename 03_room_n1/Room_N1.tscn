@@ -1154,8 +1154,9 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 
 [node name="Sprite2D" type="Sprite2D" parent="MainPlayer/Camera2D"]
+visible = false
 texture_filter = 1
-position = Vector2(4, 341)
+position = Vector2(4, 189)
 rotation = 1.5708
 scale = Vector2(0.4, 0.709)
 texture = ExtResource("13_us5an")

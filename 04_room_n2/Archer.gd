@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
 @export var arrow_scene: PackedScene = preload("res://04_room_n2/Flecha.tscn")
-@export var shoot_interval: float = 1.5
+@export var shoot_interval: float = 1.2
 @export var vision_range: float = 800.0  # Alcance máximo de visão do arqueiro
 
 @onready var sprite = $AnimatedSprite2D
 @onready var life_bar = $LifeBar
-@onready var ray_cast = $RayCast2D  # Adicione um RayCast2D como filho do arqueiro na cena
+@onready var ray_cast = $RayCast2D  
 
 var life: int = 3
 var shoot_timer: Timer
 var can_shoot: bool = true
 var is_shooting: bool = false
-var player = null  # Referência ao player
+var player = null  
 
 signal archer_died
 
@@ -54,8 +54,8 @@ func _ready() -> void:
 		player = get_tree().get_first_node_in_group("player")
 
 
-	if not player:
-		print("ERRO: Player não encontrado! Certifique-se de que o player está na cena e no grupo 'player'")
+	# if not player:
+		# print("ERRO: Player não encontrado! Certifique-se de que o player está na cena e no grupo 'player'")
 
 func _process(delta: float) -> void:
 	if player and not is_shooting:
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 		var target_position = target_node.global_position if target_node else player.global_position
 		var direction_to_player = (target_position - global_position).normalized()
 		var distance_to_player = global_position.distance_to(player.global_position)
-		# Apenas distância para visão (temporário até configurar RayCast corretamente)
+		
 		var visible = distance_to_player <= vision_range
 		if visible:
 			if direction_to_player.x > 0:
@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 			else:
 				if not sprite.animation.begins_with("left") and not is_shooting:
 					sprite.play("left")
-		# print("[Archer] dist=", distance_to_player, " vis=", visible)
+
 
 func _on_animation_finished() -> void:
 	if sprite.animation.ends_with("shooting"):
@@ -101,7 +101,7 @@ func _on_shoot_timer_timeout() -> void:
 func _shoot_arrow(direction = null) -> void:
 	
 	if not arrow_scene:
-		print("ERRO: Cena da flecha não configurada!")
+		# print("ERRO: Cena da flecha não configurada!")
 		return
 	
 	# Criar a flecha
@@ -117,12 +117,9 @@ func _shoot_arrow(direction = null) -> void:
 	
 	# Definir a direção da flecha
 	if direction:
-		# Usar a direção fornecida (direção ao player)
 		arrow.set_direction(direction)
-		# Opcional: ajustar rotação da flecha para mirar visualmente
 		arrow.rotation = direction.angle()
 	else:
-		# Fallback para o comportamento anterior
 		if sprite.animation.begins_with("right"):
 			arrow.set_direction(Vector2.RIGHT)
 		else:
@@ -138,6 +135,6 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	print("Archer morreu!")
+	# print("Archer morreu!")
 	emit_signal("archer_died")  # sinal para a Room N2
 	queue_free()

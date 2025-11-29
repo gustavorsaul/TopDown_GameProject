@@ -44,7 +44,7 @@ func refresh_archers() -> void:
 				a.connect("archer_died", Callable(self, "_on_archer_died"))
 
 	
-	print("Inimigos vivos no inicio: %d" % archers_alive)
+	# print("Inimigos vivos no inicio: %d" % archers_alive)
 	
 	# Atualiza o label com o número de arqueiros
 	_update_archer_label()
@@ -56,7 +56,7 @@ func refresh_archers() -> void:
 func _on_archer_died() -> void:
 	# Reduz o contador
 	archers_alive = max(0, archers_alive - 1)
-	print("Tutorial: Archer derrotado! Restam: %d" % archers_alive)
+	# print("Tutorial: Archer derrotado! Restam: %d" % archers_alive)
 	
 	# Atualiza o label
 	_update_archer_label()
@@ -73,10 +73,10 @@ func _open_door_now() -> void:
 	if door:
 		door.open_door()
 		door.set_as_top_level(true)
-		print("Porta do tutorial liberada.")
+		# print("Porta do tutorial liberada.")
 
 func _on_lever_activated(room_id: String):
-	print("Alavanca da", room_id, "ativada → liberando retorno.")
+	# print("Alavanca da", room_id, "ativada → liberando retorno.")
 	wooddoor.open_door()
 	if return_home:
 		return_home.set_deferred("monitoring", true)
@@ -101,5 +101,5 @@ func _on_return_home_entered(body: Node) -> void:
 		# Define o respawn do player ao voltar para Home
 		GlobalVars.set_next_respawn(Vector2(285, 285))  
 		
-		print("Player voltou para a entrada → emitindo sinal para Home")
+		# print("Player voltou para a entrada → emitindo sinal para Home")
 		emit_signal("level_finished", "res://02_home/Home.tscn")

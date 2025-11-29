@@ -97,7 +97,6 @@ animations = [{
 
 [sub_resource type="GDScript" id="GDScript_xswgy"]
 script/source = "extends AnimatedSprite2D
-
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxqc4"]

@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://sh6qnx4toqrv" path="res://00_main/MainMenu.gd" id="1_a350c"]
 [ext_resource type="Texture2D" uid="uid://wpgo73gso43i" path="res://Sprites/Menu/Gemini_Generated_Image_s45goos45goos45g.png" id="2_v2iwm"]
+[ext_resource type="FontFile" uid="uid://8s70mwl1hjgc" path="res://Sprites/Menu/MedievalSharp-Bold.ttf" id="3_t80jn"]
 [ext_resource type="Texture2D" uid="uid://cswiknaoyxkvy" path="res://Sprites/Menu/wood.png" id="3_xrmk6"]
-[ext_resource type="FontFile" uid="uid://dv6pkhm67up2b" path="res://Sprites/Menu/Enchanted Land.otf" id="4_t80jn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sm172"]
 texture = ExtResource("2_v2iwm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2iwm"]
 line_spacing = -3.0
-font = ExtResource("4_t80jn")
+font = ExtResource("3_t80jn")
 font_size = 100
 font_color = Color(0.44, 0.260333, 0.132, 1)
 outline_size = 5
@@ -22,8 +22,8 @@ shadow_color = Color(0.52, 0.3172, 0.208, 1)
 texture = ExtResource("3_xrmk6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_a350c"]
-font = ExtResource("4_t80jn")
-font_size = 30
+font = ExtResource("3_t80jn")
+font_size = 25
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -58,7 +58,7 @@ offset_top = 5.0
 offset_right = 377.0
 offset_bottom = 288.0
 grow_horizontal = 2
-text = "O      Prisioneiro 
+text = "O   Prisioneiro 
 Esquecido"
 label_settings = SubResource("LabelSettings_v2iwm")
 horizontal_alignment = 1
@@ -94,9 +94,9 @@ offset_right = 225.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_t80jn")
+theme_override_fonts/font = ExtResource("3_t80jn")
 theme_override_font_sizes/font_size = 50
-text = "INICIAR   JOGO"
+text = "INICIAR  JOGO"
 flat = true
 
 [node name="Commands_BG" type="Panel" parent="."]

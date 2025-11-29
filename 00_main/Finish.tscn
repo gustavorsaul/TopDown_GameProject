@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddl5qitkh0rib" path="res://00_main/Finish.gd" id="1_q16g2"]
 [ext_resource type="Texture2D" uid="uid://bj6wfyyohdoab" path="res://Sprites/Menu/Gemini_Generated_Image_8obegy8obegy8obe.png" id="2_sv3it"]
 [ext_resource type="Texture2D" uid="uid://cswiknaoyxkvy" path="res://Sprites/Menu/wood.png" id="3_1b5ct"]
-[ext_resource type="FontFile" uid="uid://dv6pkhm67up2b" path="res://Sprites/Menu/Enchanted Land.otf" id="4_r2dd1"]
+[ext_resource type="FontFile" uid="uid://8s70mwl1hjgc" path="res://Sprites/Menu/MedievalSharp-Bold.ttf" id="5_1b5ct"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ltt46"]
 
@@ -22,8 +22,8 @@ font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_4tq35"]
 line_spacing = -3.0
-font = ExtResource("4_r2dd1")
-font_size = 100
+font = ExtResource("5_1b5ct")
+font_size = 90
 font_color = Color(0.44, 0.260333, 0.132, 1)
 outline_size = 5
 outline_color = Color(0.56, 0.56, 0.56, 1)
@@ -88,9 +88,9 @@ offset_right = 225.0
 offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_r2dd1")
-theme_override_font_sizes/font_size = 50
-text = "JOGAR  NOVAMENTE"
+theme_override_fonts/font = ExtResource("5_1b5ct")
+theme_override_font_sizes/font_size = 45
+text = "JOGAR NOVAMENTE"
 flat = true
 
 [node name="Label" type="Label" parent="."]
@@ -120,7 +120,7 @@ offset_top = 44.0
 offset_right = 377.0
 offset_bottom = 275.0
 grow_horizontal = 2
-text = "Você  Escapou!
+text = "Você Escapou!
 Parabéns!"
 label_settings = SubResource("LabelSettings_4tq35")
 horizontal_alignment = 1

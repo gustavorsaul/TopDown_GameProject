@@ -13,12 +13,10 @@ func  _ready() -> void:
 	_update_life_label()
 
 func _physics_process(delta: float) -> void:
-	# Only use velocity-based animation when actually moving via physics
 	if velocity.length() > 0.01:
 		animate()
 
 func _process(delta: float) -> void:
-	# Use position delta to animate when moved externally (e.g., AnimationPlayer)
 	var movement: Vector2 = position - previous_position
 	if movement.length() < 0.1:
 		sprite.stop()

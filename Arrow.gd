@@ -11,7 +11,6 @@ func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	
 func setup_arrow(target_pos: Vector2) -> void:
-	# Define a direção baseada na posição inicial e alvo
 	direction = position.direction_to(target_pos)
 	start_position = position
 	# Rotaciona a flecha para apontar na direção correta
@@ -21,18 +20,14 @@ func _physics_process(delta: float) -> void:
 	# Move a flecha na direção definida
 	position += direction * speed * delta
 	
-	# Verifica se já viajou a distância máxima
 	if position.distance_to(start_position) >= max_distance:
 		queue_free()
-		
-	
+
 func animation_finished():
-	print("Acabou a animação")
+	# print("Acabou a animação")
 	queue_free()
 
 func _on_body_entered(body: Node) -> void:
-	# Verifica se o corpo é um inimigo que pode receber dano
-	# E não é o player (para evitar colisão entre arrow e player)
 	if body.has_method("take_damage") and not body.is_in_group("player"):
 		body.take_damage(1)
 		queue_free()

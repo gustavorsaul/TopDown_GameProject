@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cobvekyaeuk12" path="res://00_main/GameOver.gd" id="1_w4nn7"]
 [ext_resource type="Texture2D" uid="uid://b83hsk65bg210" path="res://Sprites/Menu/Gemini_Generated_Image_9ljbxz9ljbxz9ljb.png" id="2_aa7fo"]
 [ext_resource type="Texture2D" uid="uid://cswiknaoyxkvy" path="res://Sprites/Menu/wood.png" id="3_x1is1"]
-[ext_resource type="FontFile" uid="uid://dv6pkhm67up2b" path="res://Sprites/Menu/Enchanted Land.otf" id="4_7gdef"]
+[ext_resource type="FontFile" uid="uid://8s70mwl1hjgc" path="res://Sprites/Menu/MedievalSharp-Bold.ttf" id="4_ehl1a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j4x3x"]
 texture = ExtResource("2_aa7fo")
@@ -15,8 +15,8 @@ texture = ExtResource("3_x1is1")
 font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_x1is1"]
-font = ExtResource("4_7gdef")
-font_size = 120
+font = ExtResource("4_ehl1a")
+font_size = 100
 font_color = Color(0.44, 0.260333, 0.132, 1)
 outline_size = 5
 outline_color = Color(0.56, 0.56, 0.56, 1)
@@ -88,9 +88,9 @@ offset_right = 226.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_7gdef")
-theme_override_font_sizes/font_size = 50
-text = "JOGAR  NOVAMENTE"
+theme_override_fonts/font = ExtResource("4_ehl1a")
+theme_override_font_sizes/font_size = 45
+text = "JOGAR NOVAMENTE"
 flat = true
 
 [node name="GameOver" type="Label" parent="."]

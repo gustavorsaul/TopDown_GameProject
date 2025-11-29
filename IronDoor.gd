@@ -17,13 +17,11 @@ func _ready():
 func open_door():
 	if not is_open:
 		anim.play("opening_no_shadow")
-		# "set_deferred" é OBRIGATÓRIO para evitar erros de física ao alterar colisões em tempo real
 		col.set_deferred("disabled", true)
 		is_open = true
 		
 func close_door():
 	if is_open:
 		anim.play("closing_no_shadow")
-		# Reativa a colisão de forma segura
 		col.set_deferred("disabled", false)
 		is_open = false

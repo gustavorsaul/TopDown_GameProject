@@ -13,22 +13,19 @@ var active: bool = false
 
 
 func _ready():
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	area.body_entered.connect(_on_body_entered)
 	sprite.play(animation_name)
 	active = false
 	_check_cycle_task()
 
 func _exit_tree():
-	# Marca para parar o loop quando o nó for removido
 	active = false
 
 func _check_cycle_task() -> void:
-	# aguarda até o nó realmente estar dentro da árvore
 	await ready
 
 	while is_inside_tree():
-		# segurança — evita nulls durante troca de cena
 		var tree := get_tree()
 		if tree == null:
 			return
@@ -39,27 +36,25 @@ func _check_cycle_task() -> void:
 		if active:
 			_check_for_player_on_trap()
 
-		# espera um pequeno intervalo antes de checar novamente
 		await tree.create_timer(check_interval, false).timeout
 
 
 
 
 func _check_for_player_on_trap() -> void:
-	# Verifica todos os corpos que estão atualmente dentro da área da trap
 	var overlapping_bodies = area.get_overlapping_bodies()
 	for body in overlapping_bodies:
 		if body.is_in_group("player"):
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
-				print("Player tomou dano da trap ativa!")
-			else:
-				print("Dano causado ao jogador (simulação):", damage)
+				# print("Player tomou dano da trap ativa!")
+			# else:
+				# print("Dano causado ao jogador (simulação):", damage)
 
 
 func _on_body_entered(body: Node) -> void:
 	if active and body.is_in_group("player"):
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		else:
-			print("Dano causado ao jogador (simulação):", damage)
+		# else:
+			# print("Dano causado ao jogador (simulação):", damage)

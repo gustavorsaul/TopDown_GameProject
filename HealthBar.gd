@@ -29,7 +29,6 @@ func take_damage(amount: int):
 	current_health = max(0, current_health - amount)
 	update_health_display()
 	
-	# Efeito visual quando toma dano
 	animate_damage()
 
 func heal(amount: int):
@@ -37,19 +36,15 @@ func heal(amount: int):
 	update_health_display()
 
 func update_health_display():
-	# Verificar se os nós existem antes de usá-los
 	if not is_instance_valid(health_fill) or not is_instance_valid(health_label):
-		print("HealthBar: Nós não encontrados!")
+		# print("HealthBar: Nós não encontrados!")
 		return
 	
-	# Atualizar barra de progresso
 	health_fill.value = current_health
 	health_fill.max_value = max_health
 	
-	# Atualizar label
 	health_label.text = str(current_health) + "/" + str(max_health)
 	
-	# Mudar cor baseada na porcentagem de vida
 	var health_percentage = float(current_health) / float(max_health)
 	update_health_color(health_percentage)
 
@@ -60,17 +55,13 @@ func update_health_color(percentage: float):
 	var health_fill_style = health_fill.get_theme_stylebox("fill")
 	
 	if percentage > 0.6:
-		# Verde quando vida alta
 		health_fill_style.bg_color = Color(0.2, 0.8, 0.2, 1.0)
 	elif percentage > 0.3:
-		# Amarelo quando vida média
 		health_fill_style.bg_color = Color(0.8, 0.8, 0.2, 1.0)
 	else:
-		# Vermelho quando vida baixa
 		health_fill_style.bg_color = Color(0.8, 0.2, 0.2, 1.0)
 
 func animate_damage():
-	# Efeito de piscar quando toma dano
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color.RED, 0.1)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.1)

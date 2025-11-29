@@ -2,7 +2,7 @@ extends Node2D
 
 @export var speed: float = 400.0         # velocidade da lâmina
 @export var damage: int = 1              # dano causado ao player
-@export var reverse: bool = true         # se a lâmina vai e volta
+@export var reverse: bool = true         
 
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 @onready var sprite: AnimatedSprite2D = $Path2D/PathFollow2D/AnimatedSprite2D
@@ -38,6 +38,6 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-			print("Player atingido pela lâmina! Dano:", damage)
-		else:
-			print("Player atingido (simulação):", damage)
+			# print("Player atingido pela lâmina! Dano:", damage)
+		# else:
+			# print("Player atingido (simulação):", damage)

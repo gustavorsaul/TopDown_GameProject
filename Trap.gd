@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var damage: int = 1
-@export var active_time: float = 0.6     # tempo que a armadilha fica "ativa" (dando dano)
-@export var inactive_time: float = 1.0   # tempo "seguro" entre ativações
+@export var active_time: float = 0.6     # tempo que a armadilha fica ativa
+@export var inactive_time: float = 1.0   # tempo seguro entre ativações
 
 var active: bool = false
 
@@ -22,7 +22,6 @@ func _exit_tree():
 	running = false
 
 func start_cycle() -> void:
-	# Cria uma coroutine separada com await — Godot 4 permite isso assim:
 	call_deferred("_cycle_loop")
 
 
@@ -48,19 +47,18 @@ func _cycle_loop() -> void:
 
 
 func _check_for_player_on_trap() -> void:
-	# Verifica todos os corpos que estão atualmente dentro da área da trap
 	var overlapping_bodies = area.get_overlapping_bodies()
 	for body in overlapping_bodies:
 		if body.is_in_group("player"):
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
-				print("Player tomou dano da trap ativa!")
-			else:
-				print("Dano causado ao jogador (simulação):", damage)
+				# print("Player tomou dano da trap ativa!")
+			# else:
+				# print("Dano causado ao jogador (simulação):", damage)
 
 func _on_body_entered(body: Node) -> void:
 	if active and body.is_in_group("player"):
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		else:
-			print("Dano causado ao jogador (simulação):", damage)
+		# else:
+			# print("Dano causado ao jogador (simulação):", damage)

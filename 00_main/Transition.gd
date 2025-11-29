@@ -1,11 +1,10 @@
 extends CanvasLayer
 
 @onready var rect := $ColorRect
-var fade_time := 0.3  # duração do fade (em segundos)
+var fade_time := 0.3  # duração do fade 
 
 func _ready():
 	rect.modulate.a = 0.0
-	# Se quiser um fade-in ao iniciar o jogo:
 	await get_tree().process_frame
 
 func fade_in() -> void:

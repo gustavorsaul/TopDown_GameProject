@@ -21,7 +21,7 @@ func _ready():
 		return_home.set_deferred("monitoring", false)
 
 func _on_lever_activated(room_id: String):
-	print("Alavanca da", room_id, "ativada → liberando retorno.")
+	# print("Alavanca da", room_id, "ativada → liberando retorno.")
 	door.open_door()
 	if return_home:
 		return_home.set_deferred("monitoring", true)
@@ -46,5 +46,5 @@ func _on_return_home_entered(body: Node) -> void:
 		# Define o respawn do player ao voltar para Home
 		GlobalVars.set_next_respawn(Vector2(-285, 285))  
 		
-		print("Player voltou para a entrada → emitindo sinal para Home")
+		# print("Player voltou para a entrada → emitindo sinal para Home")
 		emit_signal("level_finished", "res://02_home/Home.tscn")
