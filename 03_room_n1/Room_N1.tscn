@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c847k6mlmtip"]
+[gd_scene load_steps=22 format=4 uid="uid://c847k6mlmtip"]
 
 [ext_resource type="Script" uid="uid://c7cdggrh71j5w" path="res://03_room_n1/Room_N1.gd" id="1_0udbt"]
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_mkgsi"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://y2vlmyktfwl5" path="res://03_room_n1/BladeTrap.tscn" id="8_oriq3"]
 [ext_resource type="PackedScene" uid="uid://doyob6jir7ytw" path="res://03_room_n1/Lever.tscn" id="11_rwm57"]
 [ext_resource type="PackedScene" uid="uid://bvpvxcaiacbr4" path="res://WoodDoor.tscn" id="12_4cim6"]
+[ext_resource type="Texture2D" uid="uid://cd0rdgliqkgdg" path="res://Sprites/360_F_1597019357_UQTJsIpUIaC67ZDCagnulqGMT65soEft-removebg-preview.png" id="13_us5an"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwm57"]
 texture = ExtResource("3_0xqct")
@@ -1151,3 +1152,10 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MainPlayer/Camera2D"]
+texture_filter = 1
+position = Vector2(4, 341)
+rotation = 1.5708
+scale = Vector2(0.4, 0.709)
+texture = ExtResource("13_us5an")

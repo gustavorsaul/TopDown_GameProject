@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bltn1dc62fi0r"]
+[gd_scene load_steps=25 format=4 uid="uid://bltn1dc62fi0r"]
 
 [ext_resource type="PackedScene" uid="uid://c1bei8kfqpste" path="res://Player.tscn" id="1_mxxyh"]
 [ext_resource type="Script" uid="uid://bk37jb317w7bn" path="res://04_room_n2/Room_N2.gd" id="1_yx00q"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ca8e02lfid4pc" path="res://IronDoor.tscn" id="10_iwqnj"]
 [ext_resource type="Texture2D" uid="uid://cot2bemwt2w2w" path="res://Sprites/istockphoto-1306105198-612x612-removebg-preview.png" id="11_ss5bo"]
 [ext_resource type="PackedScene" uid="uid://bvpvxcaiacbr4" path="res://WoodDoor.tscn" id="11_yaji4"]
+[ext_resource type="Texture2D" uid="uid://cd0rdgliqkgdg" path="res://Sprites/360_F_1597019357_UQTJsIpUIaC67ZDCagnulqGMT65soEft-removebg-preview.png" id="14_m2s5t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yaji4"]
 texture = ExtResource("3_tew84")
@@ -1110,3 +1111,10 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MainPlayer/Camera2D"]
+visible = false
+position = Vector2(4, 334)
+rotation = 1.5708
+scale = Vector2(0.4, 0.703675)
+texture = ExtResource("14_m2s5t")
