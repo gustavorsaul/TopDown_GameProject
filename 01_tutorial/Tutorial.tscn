@@ -1029,7 +1029,7 @@ visible = false
 scale = Vector2(2.08311, 27.3762)
 
 [node name="Traps" type="Node2D" parent="."]
-position = Vector2(-63, 443)
+position = Vector2(-63, 415)
 
 [node name="Trap" parent="Traps" instance=ExtResource("7_r2yp7")]
 position = Vector2(4, 92)
@@ -1102,18 +1102,6 @@ position = Vector2(65, -28)
 
 [node name="Trap24" parent="Traps" instance=ExtResource("7_r2yp7")]
 position = Vector2(96, -28)
-
-[node name="Trap25" parent="Traps" instance=ExtResource("7_r2yp7")]
-position = Vector2(4, -66)
-
-[node name="Trap26" parent="Traps" instance=ExtResource("7_r2yp7")]
-position = Vector2(34, -66)
-
-[node name="Trap27" parent="Traps" instance=ExtResource("7_r2yp7")]
-position = Vector2(65, -66)
-
-[node name="Trap28" parent="Traps" instance=ExtResource("7_r2yp7")]
-position = Vector2(96, -66)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-96, -608)
