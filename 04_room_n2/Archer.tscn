@@ -226,7 +226,9 @@ texture_filter = 1
 position = Vector2(0, -9.33333)
 scale = Vector2(0.850911, 0.705729)
 sprite_frames = SubResource("SpriteFrames_7q2pp")
-animation = &"right_shooting"
+animation = &"left_shooting"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -4.66667)

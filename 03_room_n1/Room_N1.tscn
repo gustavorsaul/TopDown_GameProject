@@ -1047,19 +1047,19 @@ shape = SubResource("RectangleShape2D_oriq3")
 [node name="FloorTraps" type="Node2D" parent="."]
 
 [node name="TrapsIntercaladas" parent="FloorTraps" instance=ExtResource("6_0xqct")]
-position = Vector2(-184, -491)
+position = Vector2(-184, -450)
 scale = Vector2(1.47, 1.15)
 
 [node name="TrapsIntercaladas3" parent="FloorTraps" instance=ExtResource("6_0xqct")]
-position = Vector2(5, -491)
+position = Vector2(5, -450)
 scale = Vector2(1.47, 1.15)
 
 [node name="TrapsIntercaladas7" parent="FloorTraps" instance=ExtResource("6_0xqct")]
-position = Vector2(-183, -658)
+position = Vector2(-183, -669)
 scale = Vector2(1.15, 1.15)
 
 [node name="TrapsIntercaladas8" parent="FloorTraps" instance=ExtResource("6_0xqct")]
-position = Vector2(42, -658)
+position = Vector2(42, -669)
 scale = Vector2(1.15, 1.15)
 
 [node name="TrapsIntercaladas9" parent="FloorTraps" instance=ExtResource("6_0xqct")]
@@ -1096,24 +1096,24 @@ scale = Vector2(0.85, 0.85)
 
 [node name="MarteloParedeTrap5" parent="MarteloTraps" instance=ExtResource("7_aqfnf")]
 top_level = true
-position = Vector2(-72, -696)
+position = Vector2(-72, -701)
 rotation = 3.14159
 scale = Vector2(0.85, 0.85)
 
 [node name="MarteloParedeTrap6" parent="MarteloTraps" instance=ExtResource("7_aqfnf")]
 top_level = true
-position = Vector2(152, -696)
+position = Vector2(152, -701)
 rotation = 3.14159
 scale = Vector2(0.85, 0.85)
 
 [node name="MarteloParedeTrap7" parent="MarteloTraps" instance=ExtResource("7_aqfnf")]
 top_level = true
-position = Vector2(70, -696)
+position = Vector2(70, -701)
 scale = Vector2(0.85, 0.85)
 
 [node name="MarteloParedeTrap8" parent="MarteloTraps" instance=ExtResource("7_aqfnf")]
 top_level = true
-position = Vector2(-154, -696)
+position = Vector2(-154, -701)
 scale = Vector2(0.85, 0.85)
 
 [node name="BladeTraps" type="Node2D" parent="."]
@@ -1158,5 +1158,5 @@ visible = false
 texture_filter = 1
 position = Vector2(4, 189)
 rotation = 1.5708
-scale = Vector2(0.4, 0.709)
+scale = Vector2(0.2, 0.354)
 texture = ExtResource("13_us5an")

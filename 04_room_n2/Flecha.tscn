@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://552d4u82ej0e" path="res://Sprites/Player/Joao/WEAPON_arrow.png" id="3_nqqqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oarw0"]
-size = Vector2(14.6667, 2.66667)
+size = Vector2(14.6667, 3.33334)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6tmr"]
 atlas = ExtResource("3_nqqqg")
@@ -39,12 +39,13 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_xumqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.33333, 2)
+position = Vector2(7.33332, 1.66667)
 shape = SubResource("RectangleShape2D_oarw0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.72, 0.72, 0.72, 1)
 texture_filter = 1
-position = Vector2(7.54217, 1.99641)
+position = Vector2(7.54347, 1.70582)
 rotation = 3.14159
-scale = Vector2(0.468884, 0.495369)
+scale = Vector2(0.472776, 0.684509)
 sprite_frames = SubResource("SpriteFrames_nqqqg")

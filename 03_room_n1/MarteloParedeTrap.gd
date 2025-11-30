@@ -13,11 +13,11 @@ var active: bool = false
 
 
 func _ready():
-	await get_tree().create_timer(0.5).timeout
 	area.body_entered.connect(_on_body_entered)
-	sprite.play(animation_name)
 	active = false
 	_check_cycle_task()
+	await get_tree().create_timer(0.5).timeout
+	sprite.play(animation_name)
 
 func _exit_tree():
 	active = false

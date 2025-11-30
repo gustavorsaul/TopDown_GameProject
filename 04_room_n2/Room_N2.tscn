@@ -1116,5 +1116,5 @@ editor_draw_drag_margin = true
 visible = false
 position = Vector2(4, 189)
 rotation = 1.5708
-scale = Vector2(0.4, 0.703675)
+scale = Vector2(0.2, 0.352)
 texture = ExtResource("14_m2s5t")

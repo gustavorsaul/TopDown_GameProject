@@ -60,7 +60,7 @@ func _on_shoot_timer_timeout() -> void:
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	
-	if Input.is_action_just_pressed("shift") and input_direction != Vector2.ZERO:
+	if Input.is_action_just_pressed("space") and input_direction != Vector2.ZERO:
 		if GlobalVars.use_dash(): 
 			start_dash(input_direction)
 	

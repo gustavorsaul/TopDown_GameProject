@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed: float = 400.0         # velocidade da lâmina
+@export var speed: float = 340.0         # velocidade da lâmina
 @export var damage: int = 1              # dano causado ao player
 @export var reverse: bool = true         
 
